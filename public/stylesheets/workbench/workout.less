@@ -1,0 +1,114 @@
+.workout-card {
+
+	margin-bottom: 30px;
+
+	& > a {
+		color: #FFF;
+		display: block;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.item-header {
+		padding: 1px 10px 10px;
+
+		.item-name {
+			height: 52px;
+			overflow: hidden;
+		}
+	}
+
+	.item-body {
+		//display: none;
+		.clearfix;
+		padding: 10px;
+
+		.sets-name {
+			float: left;
+			max-width: 100px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.item-actual-sets, .item-expected-sets {
+			float: right;
+			.clearfix;
+
+			div {
+				float: left;
+				min-width: 20px;
+				text-align: right;
+			}
+
+			div + div {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.item-footer {
+		padding: 10px 10px;
+	}
+
+
+	// card colors
+	& > a {
+		color: @card-text-color;
+
+		.item-header {
+			background-color: @card-header-background;
+		}
+
+		&:hover {
+			.item-header {
+				.hover-background(@card-header-background);
+			}
+		}
+
+		&:active {
+			.active-background;
+		}
+	}
+
+	&.good-time > a {
+
+		.item-footer {
+			background-color: @card-footer-background-good;
+		}
+
+		&:hover {
+			.item-footer {
+				.hover-background(@card-footer-background-good);
+			}
+		}
+	}
+
+	&.warning-time > a {
+
+		.item-footer {
+			background-color: @card-footer-background-warning;
+		}
+
+		&:hover {
+			.item-footer {
+				.hover-background(@card-footer-background-warning);
+			}
+		}
+	}
+
+
+	&.bad-time {
+		.item-footer {
+			background-color: @card-footer-background-bad;
+		}
+
+		&:hover {
+			.item-footer {
+				.hover-background(@card-footer-background-bad);
+			}
+		}
+	}
+}

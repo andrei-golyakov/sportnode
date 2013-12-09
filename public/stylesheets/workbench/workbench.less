@@ -1,0 +1,28 @@
+@card-text-color: #fff;
+@card-header-background: #506565;
+@card-footer-background-good: @brand-success;
+@card-footer-background-warning: @brand-warning;
+@card-footer-background-bad: @brand-danger;
+
+@page-header-color: #3c454f;
+
+.hover-background(@background) {
+	background-color: darken(@background, 8%);
+}
+
+.active-background {
+	.opacity(0.5);
+}
+
+form.navbar-form.navbar-right {
+	.form-group {
+		padding-right: 10px;
+	}
+}
+
+h2 {
+	color: @page-header-color;
+}
+
+@import "workout.less";
+@import "workoutRun.less";

@@ -13,3 +13,6 @@ results
 
 npm-debug.log
 node_modules
+
+aws-config.json
+user-config.json

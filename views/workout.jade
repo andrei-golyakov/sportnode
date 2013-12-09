@@ -1,0 +1,25 @@
+extends layout
+
+block scripts
+	script(type='text/javascript', src='/javascripts/workout.js')
+
+block content
+	h2 Latest Workouts
+	.row
+		#workout-list(data-bind='foreach: workoutList').workout-list
+			.col-xs-12.col-sm-6.col-md-4.col-lg-3.workout-card(
+				data-bind=
+					'css: {' + 
+					' "good-time": "good" === dateStatus(),' + 
+					' "warning-time": "warning" === dateStatus(),' +
+					' "bad-time": "bad" === dateStatus()' +
+					' }')
+				a(data-bind='attr: { href: "/workouts/run/" + id() }')
+					.item-header
+						h3.item-name(data-bind='text: exerciseName')
+					.item-footer.clearfix
+						.item-date.pull-left(data-bind='text: dateFromNow')
+						.item-date.pull-right
+							span ~
+							span(data-bind='text: estimatedTime')
+							span &nbsp;minutes

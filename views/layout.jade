@@ -1,0 +1,51 @@
+doctype 5
+html(lang="en")
+	head
+		title= title
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		link(rel='stylesheet', href='/stylesheets/style.min.css')
+		block styles
+		script(type='text/javascript', src='/javascripts/jquery-2.0.3.min.js')
+		script(type='text/javascript', src='/javascripts/knockout-3.0.0.js')
+		script(type='text/javascript', src='/javascripts/knockout.mapping-2.4.1.min.js')
+		script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+		script(type='text/javascript', src='/javascripts/login.js')
+		script(type='text/javascript', src='/javascripts/md5.js')
+		block scripts
+	body
+		.navbar.navbar-inverse.navbar-static-top(role='navigation')
+			.container
+				.navbar-header
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='/') Sport Node
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li(class=page === "Home" ? "active" : "")
+							a(href='/') Home
+						li(class=page === "Workouts" ? "active" : "")
+							a(href='/workouts') Workouts
+					if user
+						ul.nav.navbar-nav.navbar-right
+							li.dropdown
+								a.dropdown-toggle(href='#', data-toggle='dropdown') Welcome, #{user.name} &nbsp;
+									b.caret
+								ul.dropdown-menu
+									li
+										a#logoutButton(href='#') Logout
+					else
+						form#loginForm.navbar-form.navbar-right
+							.form-group
+								input#email.form-control(name='email', type='text', placeholder='Email')
+							.form-group
+								input#password.form-control(type='password', placeholder='Password')
+								input#passwordHash.form-control(name= 'passwordHash', type='hidden')
+							button#loginButton.btn.btn-default(type='button') Sign in
+		.container
+			block content
+
+			footer
+				p
+					| Developed by Andrei Golyakov

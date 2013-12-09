@@ -1,4 +1,10 @@
-sportnode
+SportNode
 =========
 
-Simple workout tracker app
+Simple workout tracker web app
+
+Stack
+Node.js
+Express
+Bootstrap
+AWS DynamoDb

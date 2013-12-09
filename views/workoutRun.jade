@@ -1,0 +1,98 @@
+extends layout
+
+block scripts
+	script(type='text/javascript', src='/javascripts/workoutRun.js')
+
+block content
+	audio#audioPlayer(preload='auto')
+		source(src='../../audio/WindowsDing.ogg', type='audio/ogg; codecs=vorbis')
+		source(src='../../audio/WindowsDing.mp3', type='audio/mpeg')
+		
+
+	input#workoutId(type='hidden', value='#{id}')
+	h2(data-bind='text: exerciseName')
+
+
+	.row
+		.col-lg-6.col-md-6.col-sm-8
+			.form-group.form-inline.change-sets-number
+				input#numberOfSets.input-lg.form-control(data-bind='value: numberOfSets, enable: editNumberOfSetsEnabled()', type='number')
+				button#editNumberOfSets.btn.btn-lg(type='button', data-bind='css: { "btn-default": !editNumberOfSetsEnabled(), "btn-success": editNumberOfSetsEnabled() }')
+					span.glyphicon(data-bind='css: { "glyphicon-pencil": !editNumberOfSetsEnabled(), "glyphicon-ok": editNumberOfSetsEnabled() }')
+
+				button#startPauseWorkout.btn.btn-lg.pull-right(type='button', data-bind='css: { "btn-default": inProgress(), "btn-success": !inProgress() }')
+					span(data-bind='text: actualTimeFormatted')
+					span &nbsp;
+					span.glyphicon(data-bind='css: { "glyphicon-play": !inProgress(), "glyphicon-pause": inProgress() }')
+
+			.form-group.sets
+				table.table
+					thead
+						tr
+							th Planned
+							th Actual
+							th Relax
+							th.buttons &nbsp;
+					tbody(data-bind='foreach: sets')
+						tr(data-bind=
+							'css: { ' + 
+							'  "success": isFinished(), ' +
+							'  "warning": isStarted() || isRelaxing(), ' +
+							'  "danger": isBlocked() ' +
+							'}')
+							td
+								input.form-control.input-lg(data-bind='value: actualReps', type='text')
+							td
+								input.form-control.input-lg(data-bind='value: expectedReps', type='text')
+							td
+								input.form-control.input-lg(data-bind='value: relaxTime', type='text')
+							td
+								button.btn.btn-lg(data-bind=
+									'attr : { "data-set-relax-button": $index }, ' +
+									'enable: isStarted() || isRelaxing, ' + 
+									'css: { ' + 
+									'  "btn-success": isStarted(), ' +
+									'  "btn-warning": isRelaxing(), '+
+									'  "btn-default": isBlocked() || isFinished() '+
+									'}')
+									span(data-bind='text: actualTimeFormatted')
+									span &nbsp;
+									span.glyphicon(data-bind=
+										'css: { ' + 
+										'  "glyphicon-minus-sign": isBlocked(), ' +
+										'  "glyphicon-play": isStarted(), ' +
+										'  "glyphicon-time": isRelaxing(), ' +
+										'  "glyphicon-ok": isFinished() ' +
+										'}') 
+
+		.col-lg-6.col-md-6.col-sm-4
+			.form-group
+				textarea#notes.form-control(data-bind='value: notes', placeholder='Type notes here')
+
+			.form-group
+				.alert.alert-info
+					div
+						span Previous date:
+						span &nbsp;
+						span(data-bind='text: date')
+
+					div
+						span Previous time: 
+						span ~
+						span(data-bind='text: estimatedTime')
+						span &nbsp;minutes
+
+			.form-group
+				div
+					label(for='curStartDate') Started at: &nbsp;
+					input#curStartDate(type='datetime' data-bind='value: curStartDate')
+
+				div
+					label(for='actualTimeSec') Actual time (sec): &nbsp;
+					input#curStartDate(type='number' data-bind='value: actualTimeSec')
+
+			.form-group
+				button#saveWorkout.btn.btn-lg.btn-block.btn-primary(type='button')
+					span.glyphicon.glyphicon-cloud-upload
+					span &nbsp;
+					span Save Workout
