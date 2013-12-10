@@ -1,10 +1,14 @@
 SportNode
 =========
 
-Simple workout tracker web app
+Simple workout tracker web app.
 
-Stack
-Node.js
-Express
-Bootstrap
-AWS DynamoDb
+Technologies and frameworks:
+----------------------------
+* Node.js
+* Express
+* Jade
+* LESS
+* Bootstrap
+* Knockout.js
+* AWS DynamoDb
