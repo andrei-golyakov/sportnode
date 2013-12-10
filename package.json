@@ -1,9 +1,18 @@
 {
   "name": "SportNode",
   "version": "0.0.1",
+  "description": "Simple workout tracker web app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrei-golyakov/sportnode.git"
+  },
+  "author": "Andrei Golyakov <golyakoff@gmail.com>",
+  "maintainers": "Andrei Golyakov <golyakoff@gmail.com>",
+  "licenses": ["GPLV2"],
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jasmine-node spec"
   },
   "dependencies": {
     "express": "3.4.4",
