@@ -24,28 +24,28 @@ html(lang="en")
 				.navbar-collapse.collapse
 					ul.nav.navbar-nav
 						li(class=page === "Home" ? "active" : "")
-							a(href='/') Home
+							a(href='/') #{lang.layout.home}
 						li(class=page === "Workouts" ? "active" : "")
-							a(href='/workouts') Workouts
+							a(href='/workouts') #{lang.layout.workouts}
 					if user
 						ul.nav.navbar-nav.navbar-right
 							li.dropdown
-								a.dropdown-toggle(href='#', data-toggle='dropdown') Welcome, #{user.name} &nbsp;
+								a.dropdown-toggle(href='#', data-toggle='dropdown') #{user.name} &nbsp;
 									b.caret
 								ul.dropdown-menu
 									li
-										a#logoutButton(href='#') Logout
+										a#logoutButton(href='#') #{lang.layout.logout}
 					else
 						form#loginForm.navbar-form.navbar-right
 							.form-group
-								input#email.form-control(name='email', type='text', placeholder='Email')
+								input#email.form-control(name='email', type='text', placeholder='#{lang.layout.email}')
 							.form-group
-								input#password.form-control(type='password', placeholder='Password')
+								input#password.form-control(type='password', placeholder='#{lang.layout.password}')
 								input#passwordHash.form-control(name= 'passwordHash', type='hidden')
-							button#loginButton.btn.btn-default(type='button') Sign in
+							button#loginButton.btn.btn-default(type='button') #{lang.layout.signIn}
 		.container
 			block content
 
 			footer
 				p
-					| Developed by Andrei Golyakov
+					| #{lang.layout.developedBy}

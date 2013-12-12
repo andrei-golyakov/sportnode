@@ -1,5 +1,6 @@
 var userManagerFactory = require('../lib/data/userManagerFactory').UserManagerFactory;
 var userManager = userManagerFactory.createUserManager();
+var tm = require('../lib/helpers/translationManager');
 
 /*
  * GET home page.
@@ -7,13 +8,22 @@ var userManager = userManagerFactory.createUserManager();
 
 exports.index = function(req, res) {
 	userManager.getUser(req, function(user) {
-		var o = { page: 'Home' };
+		var o = {
+			page: 'Home',
+			lang: tm.translations(res, 'index')
+		};
+
 		if (user) {
 			o['user'] = user;
 		}
+		console.log(o);
 		res.render('index', o);
 	});
 };
+
+/*
+ * POST login form.
+ */
 
 exports.login = function(req, res) {
 	userManager.authorizeUser(req.body.email, req.body.passwordHash, function(userId) {
@@ -26,6 +36,10 @@ exports.login = function(req, res) {
 		res.end();
 	});
 };
+
+/*
+ * POST logout form.
+ */
 
 exports.logout = function(req, res) {
 	delete req.session.userId;

@@ -1,6 +1,14 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var i18n = require("i18n");
+
+i18n.configure({
+	locales: ['en', 'ru'],
+	defaultLocale: 'en',
+	cookie: 'language',
+	directory: __dirname + '/locales'
+});
 
 var app = express();
 
@@ -14,6 +22,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('5UP3RS3CRE7'));
 app.use(express.cookieSession());
+app.use(i18n.init);
 app.use(app.router);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
