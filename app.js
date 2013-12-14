@@ -7,7 +7,7 @@ i18n.configure({
 	locales: ['en', 'ru'],
 	defaultLocale: 'en',
 	cookie: 'language',
-	directory: __dirname + '/locales'
+	directory: path.join(__dirname, 'locales')
 });
 
 var app = express();
