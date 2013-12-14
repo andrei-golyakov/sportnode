@@ -11,3 +11,7 @@ block content
 		a.fb_button_medium(href='/auth/facebook')
 			span#fb_login_text.fb_button_text
 				| Connect with Facebook
+	if (everyauth.loggedIn)
+		span user #{everyauth.user.name}
+	else
+		apan #{JSON.stringify(everyauth)}
