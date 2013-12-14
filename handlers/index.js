@@ -1,3 +1,5 @@
+var everyauth = require('everyauth');
+
 var userManagerFactory = require('../lib/data/userManagerFactory').UserManagerFactory;
 var userManager = userManagerFactory.createUserManager();
 
@@ -6,6 +8,10 @@ var userManager = userManagerFactory.createUserManager();
  */
 
 exports.index = function(req, res) {
+	if (req.session.auth) {
+		console.log(JSON.stringify(req.session.auth.facebook));
+	}
+
 	userManager.getUser(req, function(user) {
 		var o = { page: 'Home' };
 		if (user) {
