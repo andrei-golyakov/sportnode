@@ -3,15 +3,9 @@ extends layout
 block content
 	h1 Sport Node
 	p Welcome!
-	p Statistics currently in development. Please try 
-		a(href='/workouts') our workout helper
-		.
+	p Try our workout helper right now!
 
-	#fb-login.fb_button(style='background-position: left -188px')
-		a.fb_button_medium(href='/auth/facebook')
-			span#fb_login_text.fb_button_text
-				| Connect with Facebook
-	if (everyauth.loggedIn)
-		span user #{everyauth.user.name}
-	else
-		apan #{JSON.stringify(everyauth)}
+	div(style='height: 300px;')
+		| Sign In with your favorite social service
+		a(href='/auth/facebook' title='Facebook')
+			.social-icon.s30.fb

@@ -7,20 +7,12 @@ exports.index = function(req, res) {
 	res.render('index', o);
 };
 
-exports.login = function(req, res) {
-	userManager.authorizeUser(req.body.email, req.body.passwordHash, function(userId) {
-		var result = { authorized: false }
-		if (userId) {
-			req.session.userId = userId;
-			result.authorized = true;
-		}
-		res.send(result);
-		res.end();
-	});
-};
+/*
+ * GET logout
+ */
 
 exports.logout = function(req, res) {
-	delete req.session.userId;
+	req.logout();
 	res.send({ authorized: false });
 	res.end();
 };
