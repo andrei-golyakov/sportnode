@@ -25,24 +25,19 @@ html(lang="en")
 					ul.nav.navbar-nav
 						li(class=page === "Home" ? "active" : "")
 							a(href='/') Home
-						li(class=page === "Workouts" ? "active" : "")
-							a(href='/workouts') Workouts
-					if user
+						if (everyauth.loggedIn)
+							li(class=page === "Workouts" ? "active" : "")
+								a(href='/workouts') Workouts
+					if (everyauth.loggedIn)
 						ul.nav.navbar-nav.navbar-right
 							li.dropdown
-								a.dropdown-toggle(href='#', data-toggle='dropdown') Welcome, #{user.name} &nbsp;
+								a.dropdown-toggle(href='#', data-toggle='dropdown')
+									img(src='#{everyauth.user.pictureUrl}', style='max-height: 20px; margin-right: 10px;', data-xxx='hardcoded styles')
+									| #{everyauth.user.name} &nbsp;
 									b.caret
 								ul.dropdown-menu
 									li
-										a#logoutButton(href='#') Logout
-					else
-						form#loginForm.navbar-form.navbar-right
-							.form-group
-								input#email.form-control(name='email', type='text', placeholder='Email')
-							.form-group
-								input#password.form-control(type='password', placeholder='Password')
-								input#passwordHash.form-control(name= 'passwordHash', type='hidden')
-							button#loginButton.btn.btn-default(type='button') Sign in
+										a#logoutButton(href='/logout') Logout
 		.container
 			block content
 

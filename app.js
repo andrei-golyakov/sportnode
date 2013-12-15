@@ -1,23 +1,29 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var everyauth = require('everyauth');
+var everyauthHelper = require('./lib/helpers/everyauthHelper');
 
 var app = express();
 
-app.set('port', process.env.PORT || 8888);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use(express.favicon());
+everyauthHelper.setup(everyauth);
+
+app.use(express.favicon())
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('5UP3RS3CRE7'));
-app.use(express.cookieSession());
-app.use(app.router);
+app.use(express.cookieParser('secret'));
+app.use(express.session({ secret: 'secret' }));
+app.use(everyauth.middleware(app));
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('port', process.env.PORT || 8888);
+app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(app.router);
 var routes = require('./routes').routes(app);
 
 if ('development' == app.get('env')) {
