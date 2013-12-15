@@ -14,3 +14,4 @@ Technologies and frameworks:
 * Bootstrap
 * Knockout.js
 * AWS DynamoDb
+* i11n
