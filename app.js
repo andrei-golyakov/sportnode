@@ -1,7 +1,16 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var i18n = require("i18n");
 var everyauth = require('everyauth');
+
+i18n.configure({
+	locales: ['en', 'ru'],
+	defaultLocale: 'en',
+	cookie: 'language',
+	directory: path.join(__dirname, 'locales')
+});
+
 var everyauthHelper = require('./lib/helpers/everyauthHelper');
 
 var app = express();
@@ -16,6 +25,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('secret'));
 app.use(express.session({ secret: 'secret' }));
 app.use(everyauth.middleware(app));
+app.use(i18n.init);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,10 +1,14 @@
+var tm = require('../lib/helpers/translationManager');
+
 /*
  * GET home page.
  */
 
 exports.index = function(req, res) {
-	var o = { page: 'Home' };
-	res.render('index', o);
+	res.render('index', {
+		page: 'Home',
+		lang: tm.translations(res, 'index')
+	});
 };
 
 /*
