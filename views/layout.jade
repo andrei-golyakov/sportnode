@@ -25,24 +25,19 @@ html(lang="en")
 					ul.nav.navbar-nav
 						li(class=page === "Home" ? "active" : "")
 							a(href='/') #{lang.layout.home}
-						li(class=page === "Workouts" ? "active" : "")
-							a(href='/workouts') #{lang.layout.workouts}
-					if user
+						if (everyauth.loggedIn)
+							li(class=page === "Workouts" ? "active" : "")
+								a(href='/workouts') #{lang.layout.workouts}
+					if (everyauth.loggedIn)
 						ul.nav.navbar-nav.navbar-right
 							li.dropdown
-								a.dropdown-toggle(href='#', data-toggle='dropdown') #{user.name} &nbsp;
+								a.dropdown-toggle(href='#', data-toggle='dropdown')
+									img(src='#{everyauth.user.pictureUrl}', style='max-height: 20px; margin-right: 10px;', data-xxx='hardcoded styles')
+									| #{everyauth.user.name} &nbsp;
 									b.caret
 								ul.dropdown-menu
 									li
-										a#logoutButton(href='#') #{lang.layout.logout}
-					else
-						form#loginForm.navbar-form.navbar-right
-							.form-group
-								input#email.form-control(name='email', type='text', placeholder='#{lang.layout.email}')
-							.form-group
-								input#password.form-control(type='password', placeholder='#{lang.layout.password}')
-								input#passwordHash.form-control(name= 'passwordHash', type='hidden')
-							button#loginButton.btn.btn-default(type='button') #{lang.layout.signIn}
+										a#logoutButton(href='/logout') #{lang.layout.logout}
 		.container
 			block content
 

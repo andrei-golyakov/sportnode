@@ -3,8 +3,7 @@ var workout = require('./handlers/workout');
 
 exports.routes = function(app) {
 	app.get('/', routes.index);
-	app.post('/login', routes.login);
-	app.post('/logout', routes.logout);
+	app.get('/logout', routes.logout);
 
 	app.get('/workouts', workout.index);
 	app.get('/workouts/run/:id', workout.run);

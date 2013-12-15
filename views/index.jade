@@ -3,6 +3,9 @@ extends layout
 block content
 	h1 Sport Node
 	p #{lang.index.welcome}
-	p Statistics currently in development. Please try 
-		a(href='/workouts') our workout helper
-		.
+	p Try our workout helper right now!
+
+	div(style='height: 300px;')
+		| Sign In with your favorite social service
+		a(href='/auth/facebook' title='Facebook')
+			.social-icon.s30.fb

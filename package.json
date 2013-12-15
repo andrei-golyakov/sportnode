@@ -21,6 +21,7 @@
     "moment": "*",
     "jasmine-node": "*",
     "aws-sdk": "1.13.0",
-    "i18n": "*"
+    "i18n": "*",
+    "everyauth": "*"
   }
 }

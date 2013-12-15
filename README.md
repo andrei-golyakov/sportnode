@@ -15,3 +15,4 @@ Technologies and frameworks:
 * Knockout.js
 * AWS DynamoDb
 * i11n
+* Everyauth
