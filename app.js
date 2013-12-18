@@ -3,6 +3,8 @@ var http = require('http');
 var path = require('path');
 var i18n = require("i18n");
 var everyauth = require('everyauth');
+var forceDomain = require('node-force-domain');
+var fs = require('fs');
 
 i18n.configure({
 	locales: ['en', 'ru'],
@@ -23,7 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('secret'));
-app.use(express.session({ secret: 'secret' }));
+app.use(express.session());
+app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));

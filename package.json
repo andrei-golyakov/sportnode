@@ -22,6 +22,7 @@
     "jasmine-node": "*",
     "aws-sdk": "1.13.0",
     "i18n": "*",
-    "everyauth": "*"
+    "everyauth": "*",
+    "node-force-domain": "*"
   }
 }
