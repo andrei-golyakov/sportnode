@@ -6,6 +6,12 @@ block content
 	p Try our workout helper right now!
 
 	div(style='height: 300px;')
-		| Sign In with your favorite social service
-		a(href='/auth/facebook' title='Facebook')
-			.social-icon.s30.fb
+		div Sign In with your favorite social service
+		.clearfix
+			.pull-left
+				a(href='/auth/facebook' title='Facebook')
+					.social-icon.s30.fb
+			.pull-left &nbsp;
+			.pull-left
+				a(href='/auth/vkontakte' title='Facebook')
+					.social-icon.s30.vk
