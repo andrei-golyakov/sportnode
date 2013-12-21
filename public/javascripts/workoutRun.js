@@ -11,8 +11,8 @@
 			saveWorkoutButton: "#saveWorkout"
 		},
 		url: {
-			loadWorkoutUrlTemplate: '/data/workouts/{id}',
-			saveWorkoutUrlTemplate: '/data/workouts/{id}',
+			loadWorkoutTemplate: '/data/workouts/{id}',
+			saveWorkoutTemplate: '/data/workouts/{id}',
 			workoutList: './..'
 		},
 		attr: {
@@ -72,7 +72,7 @@
 
 	function onSaveWorkoutButtonClick(event) {
 		var m = me.model.getWriteModel();
-		var url = c.url.loadWorkoutUrlTemplate.replace('{id}', me.workoutId);
+		var url = c.url.loadWorkoutTemplate.replace('{id}', me.workoutId);
 		$.post(
 			url,
 			m,
@@ -269,7 +269,7 @@
 	WorkoutRunPageViewModel.prototype = {
 		loadWorkout: function(id) {
 			var self = this;
-			var url = c.url.loadWorkoutUrlTemplate.replace('{id}', id);
+			var url = c.url.loadWorkoutTemplate.replace('{id}', id);
 			$.get(
 				url,
 				function(data) {

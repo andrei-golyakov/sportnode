@@ -14,7 +14,8 @@
 
 	"Exercises": "Виды упражнений",
 	"ExerciseName": "Название упражнения",
-	"ExercisePeriod": "Период между выполнением (в днях)",
-	"NewExerciseNamePlaceholder": "Введите имя для нового упражнения",
-	"NewExercisePeriodPlaceholder": "Введите период для нового упражнения"
+	"ExercisePeriod": "Период",
+	"AddNewExercise": "Добавить новое упражнение",
+	"AddNewExerciseName": "Название упражнения",
+	"AddNewExercisePeriod": "Период"
 }

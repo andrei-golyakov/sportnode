@@ -1,0 +1,54 @@
+extends layout
+
+block scripts
+	script(type='text/javascript', src='/javascripts/exercise.js')
+
+block content
+	h2 Configure Exercises
+	.row
+		.exercises.col-lg-12.col-md-12.col-sm-12
+			div
+				button.btn.btn-success(type="button") #{lang.exercise.addNewExercise}
+				span &nbsp;
+				button.btn.btn-danger(type="button") Delete one of existing exercises...
+
+			table.table
+				thead
+					tr
+						th.name #{lang.exercise.exerciseName}
+						th.period #{lang.exercise.exercisePeriod}
+						th.actions &nbsp;
+				tbody
+					tr
+						td.name
+							input.input-lg(placeholder='#{lang.exercise.addNewExerciseName}', type='text')
+						td.period
+							input.input-lg(placeholder='#{lang.exercise.addNewExercisePeriod}', type='number')
+						td.actions
+							button.btn.btn-lg.btn-success
+								span.glyphicon.glyphicon-plus
+							button.btn.btn-lg.btn-warning
+								span.glyphicon.glyphicon-ban-circle
+
+			h3 #{lang.exercise.exercises}
+			table.table
+				thead
+					tr
+						th.name #{lang.exercise.exerciseName}
+						th.period #{lang.exercise.exercisePeriod}
+						th.actions &nbsp;
+				tbody(data-bind='foreach: exerciseList')
+					tr(data-bind='attr: { "data-exercise-id": id }')
+						td.name
+							input.input-lg.name(data-bind='value: name', type='text')
+						td.period
+							input.input-lg.period(data-bind='value: period', type='number'	)
+						td.actions
+							button.btn.btn-lg.btn-primary(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+								span.glyphicon.glyphicon-pencil
+							button.hidden.btn.btn-lg.btn-success(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+								span.glyphicon.glyphicon-ok
+							button.hidden.btn.btn-lg.btn-warning(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+								span.glyphicon.glyphicon-ban-circle
+							button.hidden.btn.btn-lg.btn-danger(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+								span.glyphicon.glyphicon-remove

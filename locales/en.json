@@ -14,7 +14,8 @@
 
 	"Exercises": "Exercises",
 	"ExerciseName": "Exercise Name",
-	"ExercisePeriod": "Period between exercises (days)",
-	"NewExerciseNamePlaceholder": "Enter a name for new exercise",
-	"NewExercisePeriodPlaceholder": "Enter a period between exercises"
+	"ExercisePeriod": "Period",
+	"AddNewExercise": "Add New Exercise",
+	"AddNewExerciseName": "Exercise name",
+	"AddNewExercisePeriod": "Period"
 }

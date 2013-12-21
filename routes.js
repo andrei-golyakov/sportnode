@@ -16,4 +16,6 @@ exports.routes = function(app) {
 	app.get('/exercises', exercise.index);
 
 	app.get('/data/exercises', exercise.data.getList);
+	app.post('/data/exercises/put', exercise.data.put);
+	app.post('/data/exercises/delete', exercise.data.delete);
 };
