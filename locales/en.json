@@ -1,1 +1,20 @@
-{}
+{
+	"Home": "Home",
+	"Workouts": "Workouts",
+	"ConfigureExercises": "Configure Exercises",
+	"Email": "Email",
+	"Password": "Password",
+	"Sign in": "Sign In",
+	"Logout": "Logout",
+	"DevelopedBy": "Developed by Andrei Golyakov",
+
+	"Welcome": "Welcome!",
+
+	"LatestWorkouts": "Latest Workouts",
+
+	"Exercises": "Exercises",
+	"ExerciseName": "Exercise Name",
+	"ExercisePeriod": "Period between exercises (days)",
+	"NewExerciseNamePlaceholder": "Enter a name for new exercise",
+	"NewExercisePeriodPlaceholder": "Enter a period between exercises"
+}
