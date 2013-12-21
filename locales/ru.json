@@ -1,6 +1,7 @@
 {
 	"Home": "Главная",
 	"Workouts": "Упражения",
+	"ConfigureExercises": "Настройка упражнений",
 	"Email": "Электронная почта",
 	"Password": "Пароль",
 	"Sign in": "Войти",
@@ -9,5 +10,11 @@
 
 	"Welcome": "Добро пожаловать!",
 
-	"LatestWorkouts": "Недавние упражнения"
+	"LatestWorkouts": "Недавние упражнения",
+
+	"Exercises": "Виды упражнений",
+	"ExerciseName": "Название упражнения",
+	"ExercisePeriod": "Период между выполнением (в днях)",
+	"NewExerciseNamePlaceholder": "Введите имя для нового упражнения",
+	"NewExercisePeriodPlaceholder": "Введите период для нового упражнения"
 }

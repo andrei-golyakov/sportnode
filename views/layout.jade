@@ -23,11 +23,13 @@ html(lang="en")
 					a.navbar-brand(href='/') Sport Node
 				.navbar-collapse.collapse
 					ul.nav.navbar-nav
-						li(class=page === "Home" ? "active" : "")
+						li(class=page === 'Home' ? 'active' : '')
 							a(href='/') #{lang.layout.home}
 						if (everyauth.loggedIn)
-							li(class=page === "Workouts" ? "active" : "")
+							li(class=page === 'Workouts' ? 'active' : '')
 								a(href='/workouts') #{lang.layout.workouts}
+							li(class=page === 'Exercises' ? 'active': '')
+								a(href='/exercises') #{lang.layout.configureExercises}
 					if (everyauth.loggedIn)
 						ul.nav.navbar-nav.navbar-right
 							li.dropdown

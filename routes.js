@@ -1,5 +1,6 @@
 var routes = require('./handlers');
 var workout = require('./handlers/workout');
+var exercise = require('./handlers/exercise');
 
 exports.routes = function(app) {
 	app.get('/', routes.index);
@@ -11,4 +12,8 @@ exports.routes = function(app) {
 	app.get('/data/workouts', workout.data.getList);
 	app.get('/data/workouts/:id', workout.data.getLatest);
 	app.post('/data/workouts/:id', workout.data.updateLatest);
+
+	app.get('/exercises', exercise.index);
+
+	app.get('/data/exercises', exercise.data.getList);
 };
