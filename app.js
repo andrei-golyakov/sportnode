@@ -26,7 +26,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('secret'));
 app.use(express.session());
-app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
+if ('production' == app.get('env')) {
+	app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
+}
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
@@ -39,7 +41,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(app.router);
 var routes = require('./routes').routes(app);
 
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
 	app.use(express.errorHandler());
 }
 
