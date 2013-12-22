@@ -1,6 +1,7 @@
 {
 	"Home": "Home",
 	"Workouts": "Workouts",
+	"ConfigureExercises": "Configure Exercises",
 	"Email": "Email",
 	"Password": "Password",
 	"Sign in": "Sign In",
@@ -9,5 +10,17 @@
 
 	"Welcome": "Welcome!",
 
-	"LatestWorkouts": "Latest Workouts"
+	"LatestWorkouts": "Latest Workouts",
+
+	"ActualExercises": "ActualExercises",
+	"ExerciseName": "Exercise Name",
+	"ExercisePeriod": "Period",
+	"RemoveExerciseButton": "Remove Exercise...",
+	"AddNewExerciseButton": "Add Exercise...",
+	"AddNewExerciseTitle": "Add New Exercise",
+	"AddNewExerciseName": "Enter an exercise name",
+	"AddNewExercisePeriod": "Enter a period between workouts (in days)",
+	"EditExerciseTitle": "Edit Exercise",
+	"Save": "Save",
+	"Close": "Close"
 }

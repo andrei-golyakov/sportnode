@@ -2,7 +2,7 @@ extends layout
 
 block content
 	h1 Sport Node
-	p #{lang.index.welcome}
+	p #{__('Welcome')}
 	p Try our workout helper right now!
 
 	div(style='height: 300px;')
@@ -13,5 +13,5 @@ block content
 					.social-icon.s30.fb
 			.pull-left &nbsp;
 			.pull-left
-				a(href='/auth/vkontakte' title='Facebook')
+				a(href='/auth/vkontakte' title='VKontakte')
 					.social-icon.s30.vk

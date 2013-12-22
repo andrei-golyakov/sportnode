@@ -7,7 +7,7 @@
 		attr: {
 		},
 		url: {
-			loadWorkoutListUrl: '/data/workouts'
+			loadWorkoutList: '/data/workouts'
 		}
 	};
 
@@ -27,7 +27,7 @@
 	WorkoutListPageViewModel.prototype = {
 		loadWorkoutList: function() {
 			var self = this;
-			var url = c.url.loadWorkoutListUrl;
+			var url = c.url.loadWorkoutList;
 			$.get(
 				url,
 				function(data) {

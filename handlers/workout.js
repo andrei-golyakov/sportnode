@@ -1,4 +1,3 @@
-var tm = require('../lib/helpers/translationManager');
 var workoutManagerFactory = require('../lib/data/workoutManagerFactory').WorkoutManagerFactory;
 var workoutManager = workoutManagerFactory.createWorkoutManager();
 
@@ -9,8 +8,7 @@ var workoutManager = workoutManagerFactory.createWorkoutManager();
 exports.index = function(req, res) {
 	if (req.user) {
 		res.render('workout', {
-			page: 'Workouts',
-			lang: tm.translations(res, 'workout')
+			page: 'Workouts'
 		});
 	} else {
 		res.redirect('/');
@@ -25,8 +23,7 @@ exports.run = function(req, res) {
 	if (req.user) {
 		res.render('workoutRun', {
 			page: 'Workouts',
-			id: req.params.id,
-			lang: tm.translations(res, 'workoutRun')
+			id: req.params.id
 		});
 	} else {
 		res.redirect('/');
