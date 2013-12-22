@@ -1,4 +1,3 @@
-var tm = require('../lib/helpers/translationManager');
 var workoutManagerFactory = require('../lib/data/workoutManagerFactory').WorkoutManagerFactory;
 var workoutManager = workoutManagerFactory.createWorkoutManager();
 
@@ -8,9 +7,8 @@ var workoutManager = workoutManagerFactory.createWorkoutManager();
 
 exports.index = function(req, res) {
 	if (req.user) {
-		res.render('exercise', {
-			page: 'Exercises',
-			lang: tm.translations(res, 'exercise')
+-		res.render('exercise', {
+			page: 'Exercises'
 		});
 	} else {
 		res.redirect('/');

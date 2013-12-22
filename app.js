@@ -10,6 +10,7 @@ i18n.configure({
 	locales: ['en', 'ru'],
 	defaultLocale: 'en',
 	cookie: 'language',
+	updateFiles: false,
 	directory: path.join(__dirname, 'locales')
 });
 

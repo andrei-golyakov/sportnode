@@ -4,10 +4,6 @@
 		& > thead, & > tbody, & > tfoot {
 			& > tr {
 				& > th, & > td {
-					padding: 0px;
-					border-top: none;
-					border-bottom: none;
-
 					&.name {
 						width: 90%;
 					}
@@ -16,28 +12,23 @@
 					}
 					&.actions {
 						white-space: nowrap;
-						border: none !important;
-						padding-left: 10px;
 					}
-				}
-
-				& > th.top-indent {
-					padding-top: 20px;
 				}
 			}
 		}
 	}
 
-	.table > tbody > tr > td {
-		border: 1px solid #CCC;
-
-		input {
-			width: 100%;
-			border: 0;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+	.table > tbody > tr {
+		cursor: pointer;
+		
+		& > td {
+			span {
+				font-size: 14pt;
+			}
+			button {
+				margin-right: 10px;
+				margin-top: -6px;
+			}
 		}
 	}
-
 }

@@ -24,12 +24,12 @@ html(lang="en")
 				.navbar-collapse.collapse
 					ul.nav.navbar-nav
 						li(class=page === 'Home' ? 'active' : '')
-							a(href='/') #{lang.layout.home}
+							a(href='/') #{__('Home')}
 						if (everyauth.loggedIn)
 							li(class=page === 'Workouts' ? 'active' : '')
-								a(href='/workouts') #{lang.layout.workouts}
+								a(href='/workouts') #{__('Workouts')}
 							li(class=page === 'Exercises' ? 'active': '')
-								a(href='/exercises') #{lang.layout.configureExercises}
+								a(href='/exercises') #{__('ConfigureExercises')}
 					if (everyauth.loggedIn)
 						ul.nav.navbar-nav.navbar-right
 							li.dropdown
@@ -39,10 +39,10 @@ html(lang="en")
 									b.caret
 								ul.dropdown-menu
 									li
-										a#logoutButton(href='/logout') #{lang.layout.logout}
+										a#logoutButton(href='/logout') #{__('Logout')}
 		.container
 			block content
 
 			footer
 				p
-					| #{lang.layout.developedBy}
+					| #{__('DevelopedBy')}

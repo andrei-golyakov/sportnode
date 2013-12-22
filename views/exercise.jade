@@ -4,51 +4,45 @@ block scripts
 	script(type='text/javascript', src='/javascripts/exercise.js')
 
 block content
-	h2 Configure Exercises
+	h2.clearfix
+		.pull-left #{__('ConfigureExercises')}
+		.pull-right
+			button.btn.btn-success(type='button', data-toggle='modal' data-target='#exerciseDetailsDialog') #{__('AddNewExerciseButton')}
+			span &nbsp;
+			button.btn.btn-danger(type='button') #{__('RemoveExerciseButton')}
+
 	.row
 		.exercises.col-lg-12.col-md-12.col-sm-12
-			div
-				button.btn.btn-success(type="button") #{lang.exercise.addNewExercise}
-				span &nbsp;
-				button.btn.btn-danger(type="button") Delete one of existing exercises...
 
-			table.table
+			h3 #{__('ActualExercises')}
+			table.table.table-stripped.table-hover
 				thead
 					tr
-						th.name #{lang.exercise.exerciseName}
-						th.period #{lang.exercise.exercisePeriod}
-						th.actions &nbsp;
-				tbody
-					tr
-						td.name
-							input.input-lg(placeholder='#{lang.exercise.addNewExerciseName}', type='text')
-						td.period
-							input.input-lg(placeholder='#{lang.exercise.addNewExercisePeriod}', type='number')
-						td.actions
-							button.btn.btn-lg.btn-success
-								span.glyphicon.glyphicon-plus
-							button.btn.btn-lg.btn-warning
-								span.glyphicon.glyphicon-ban-circle
-
-			h3 #{lang.exercise.exercises}
-			table.table
-				thead
-					tr
-						th.name #{lang.exercise.exerciseName}
-						th.period #{lang.exercise.exercisePeriod}
-						th.actions &nbsp;
+						th.name #{__('ExerciseName')}
+						th.period #{__('ExercisePeriod')}
 				tbody(data-bind='foreach: exerciseList')
 					tr(data-bind='attr: { "data-exercise-id": id }')
 						td.name
-							input.input-lg.name(data-bind='value: name', type='text')
+							button.hidden.btn.btn-xs.btn-danger(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+								| Delete
+							span.name(data-bind='text: name', type='text')
 						td.period
-							input.input-lg.period(data-bind='value: period', type='number'	)
-						td.actions
-							button.btn.btn-lg.btn-primary(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
-								span.glyphicon.glyphicon-pencil
-							button.hidden.btn.btn-lg.btn-success(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
-								span.glyphicon.glyphicon-ok
-							button.hidden.btn.btn-lg.btn-warning(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
-								span.glyphicon.glyphicon-ban-circle
-							button.hidden.btn.btn-lg.btn-danger(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
-								span.glyphicon.glyphicon-remove
+							span.period(data-bind='text: period', type='number')
+
+			#exerciseDetailsDialog.modal.fade(role='dialog', area-labeled-by='myModalLabel', area-hidden='true')
+				.modal-dialog
+					.modal-content
+						.modal-header
+							button.close(type='button', data-dismiss='modal', area-hidden='true') &times;
+							h4#myModalLabel.modal-title #{__('AddNewExerciseTitle')}
+						.modal-body
+							form(role='form')
+								.form-group
+									label(for='exerciseDetailsName') #{__('ExerciseName')}
+									input#exerciseDetailsName.input-lg.form-control(placeholder='#{__("AddNewExerciseName")}', type='text')
+								.form-group
+									label(for='exerciseDetailsPeriod') #{__('ExercisePeriod')}
+									input#exerciseDetailsPeriod.input-lg.form-control(placeholder='#{__("AddNewExercisePeriod")}', type='number')
+						.modal-footer
+							button.btn.btn-default(type='button', data-dismiss='modal') #{__('Close')}
+							button.btn.btn-primary(type='button') #{__('Save')}

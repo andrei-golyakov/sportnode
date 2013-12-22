@@ -12,10 +12,14 @@
 
 	"LatestWorkouts": "Недавние упражнения",
 
-	"Exercises": "Виды упражнений",
+	"ActualExercises": "Текущие виды упражнений",
 	"ExerciseName": "Название упражнения",
 	"ExercisePeriod": "Период",
-	"AddNewExercise": "Добавить новое упражнение",
-	"AddNewExerciseName": "Название упражнения",
-	"AddNewExercisePeriod": "Период"
+	"AddNewExerciseButton": "Добавить упражнение...",
+	"RemoveExerciseButton": "Удалить упражнение...",
+	"AddNewExerciseTitle": "Добавить новое упражнение",
+	"AddNewExerciseName": "Введите название упражнения",
+	"AddNewExercisePeriod": "Введите период между упражнениями (в днях)",
+	"Save": "Сохранить",
+	"Close": "Закрыть"
 }
