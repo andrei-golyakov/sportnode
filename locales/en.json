@@ -15,11 +15,12 @@
 	"ActualExercises": "ActualExercises",
 	"ExerciseName": "Exercise Name",
 	"ExercisePeriod": "Period",
-	"AddNewExerciseButton": "Add Exercise...",
 	"RemoveExerciseButton": "Remove Exercise...",
+	"AddNewExerciseButton": "Add Exercise...",
 	"AddNewExerciseTitle": "Add New Exercise",
 	"AddNewExerciseName": "Enter an exercise name",
 	"AddNewExercisePeriod": "Enter a period between workouts (in days)",
+	"EditExerciseTitle": "Edit Exercise",
 	"Save": "Save",
 	"Close": "Close"
 }

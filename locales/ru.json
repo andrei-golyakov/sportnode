@@ -15,11 +15,12 @@
 	"ActualExercises": "Текущие виды упражнений",
 	"ExerciseName": "Название упражнения",
 	"ExercisePeriod": "Период",
-	"AddNewExerciseButton": "Добавить упражнение...",
 	"RemoveExerciseButton": "Удалить упражнение...",
+	"AddNewExerciseButton": "Добавить упражнение...",
 	"AddNewExerciseTitle": "Добавить новое упражнение",
 	"AddNewExerciseName": "Введите название упражнения",
 	"AddNewExercisePeriod": "Введите период между упражнениями (в днях)",
+	"EditExerciseTitle": "Изменить упражнение",
 	"Save": "Сохранить",
 	"Close": "Закрыть"
 }

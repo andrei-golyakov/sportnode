@@ -7,9 +7,9 @@ block content
 	h2.clearfix
 		.pull-left #{__('ConfigureExercises')}
 		.pull-right
-			button.btn.btn-success(type='button', data-toggle='modal' data-target='#exerciseDetailsDialog') #{__('AddNewExerciseButton')}
-			span &nbsp;
-			button.btn.btn-danger(type='button') #{__('RemoveExerciseButton')}
+			button.btn.btn-primary(type='button', data-add-exercise='true') #{__('AddNewExerciseButton')}
+			span.hidden &nbsp;
+			button.hidden.btn.btn-danger(type='button') #{__('RemoveExerciseButton')}
 
 	.row
 		.exercises.col-lg-12.col-md-12.col-sm-12
@@ -20,29 +20,36 @@ block content
 					tr
 						th.name #{__('ExerciseName')}
 						th.period #{__('ExercisePeriod')}
-				tbody(data-bind='foreach: exerciseList')
-					tr(data-bind='attr: { "data-exercise-id": id }')
+				tbody(data-bind='foreach: exercises')
+					tr(data-bind='attr: { "data-edit-exercise": id }')
 						td.name
-							button.hidden.btn.btn-xs.btn-danger(data-bind='attr: { "data-exercise-id": id }', href='javascript:;')
+							button.hidden.btn.btn-xs.btn-danger(data-bind='attr: { "data-delete-exercise": id }')
 								| Delete
 							span.name(data-bind='text: name', type='text')
 						td.period
 							span.period(data-bind='text: period', type='number')
 
-			#exerciseDetailsDialog.modal.fade(role='dialog', area-labeled-by='myModalLabel', area-hidden='true')
+			#exerciseDialog.modal.fade(
+				role='dialog',
+				area-labeled-by='exerciseDialogTitleLabel',
+				area-hidden='true',
+				data-dialog-title-add='#{__("AddNewExerciseTitle")}',
+				data-dialog-title-edit='#{__("EditExerciseTitle")}')
 				.modal-dialog
 					.modal-content
 						.modal-header
 							button.close(type='button', data-dismiss='modal', area-hidden='true') &times;
-							h4#myModalLabel.modal-title #{__('AddNewExerciseTitle')}
+							h4#exerciseDialogTitleLabel.modal-title(data-bind='text: exerciseDialogTitle')
 						.modal-body
 							form(role='form')
+								.hidden
+									inout#exerciseDialogId.input(type='hidden', data-bind='value: exerciseDialogId')
 								.form-group
 									label(for='exerciseDetailsName') #{__('ExerciseName')}
-									input#exerciseDetailsName.input-lg.form-control(placeholder='#{__("AddNewExerciseName")}', type='text')
+									input#exerciseDialogName.input-lg.form-control(placeholder='#{__("AddNewExerciseName")}', type='text', data-bind='value: exerciseDialogName')
 								.form-group
 									label(for='exerciseDetailsPeriod') #{__('ExercisePeriod')}
-									input#exerciseDetailsPeriod.input-lg.form-control(placeholder='#{__("AddNewExercisePeriod")}', type='number')
+									input#exerciseDialogPeriod.input-lg.form-control(placeholder='#{__("AddNewExercisePeriod")}', type='number', data-bind='value: exerciseDialogPeriod')
 						.modal-footer
 							button.btn.btn-default(type='button', data-dismiss='modal') #{__('Close')}
-							button.btn.btn-primary(type='button') #{__('Save')}
+							button#exerciseDialogSave.btn.btn-primary(type='button') #{__('Save')}
