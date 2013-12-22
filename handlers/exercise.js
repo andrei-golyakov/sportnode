@@ -41,10 +41,9 @@ exports.data = {
 
 	put: function(req, res) {
 		if (req.user) {
-			console.log('putItem: ' + req.body.id)
-			// workoutManager.putExercise(req.user.id, req.body, function(exercises){
-			// 	res.send(exercises);
-			// });
+			workoutManager.putExercise(req.user.id, req.body, function(result){
+				res.send(result);
+			});
 		} else {
 			res.send(401).end();
 		}

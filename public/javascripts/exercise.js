@@ -26,7 +26,6 @@
 	};
 
 	me.model = null;
-	me.exerciseMap = {};
 
 	function runScript(){
 		$(document).ready(function() {
@@ -57,33 +56,39 @@
 
 	function onEditExerciseClick(event) {
 		var eId = $(event.currentTarget).attr(c.attr.editExerciseId);
-		var arrId = me.exerciseMap[eId];
-		var exercise = me.model.exercises()[arrId];
-		me.model.exerciseDialogMode(c.dialogMode.edit);
-		me.model.exerciseDialogId(eId);
-		me.model.exerciseDialogName(exercise.name());
-		me.model.exerciseDialogPeriod(exercise.period());
-		$(c.select.exerciseDialog).modal('show');
+		
+		var exercise = me.model.getExerciseById(eId);
+		if (typeof exercise !== 'undefined' && exercise !== null) {
+			me.model.exerciseDialogMode(c.dialogMode.edit);
+			me.model.exerciseDialogId(eId);
+			me.model.exerciseDialogName(exercise.name());
+			me.model.exerciseDialogPeriod(exercise.period());
+			$(c.select.exerciseDialog).modal('show');
+		} else {
+			console.error('Exercise not found by ID specified.')
+		}
 	}
 
 	function onSaveExerciseDialog() {
 		var eId = me.model.exerciseDialogId();
-		var arrId = me.exerciseMap[eId];
-		if (typeof arrId !== 'undefined' && arrId !== null) {
-			var exercise = me.model.exercises()[arrId];
+		
+		var exercise = me.model.getExerciseById(eId);
+		if (typeof exercise !== 'undefined' && exercise !== null) {
 			exercise.name(me.model.exerciseDialogName());
 			exercise.period(me.model.exerciseDialogPeriod());
 		} else {
-			me.model.exercises.push({
+			exercise = {
 				id: ko.observable(eId),
 				name: ko.observable(me.model.exerciseDialogName()),
 				period: ko.observable(me.model.exerciseDialogPeriod())
-			});
+			};
+			me.model.exercises.push(exercise);
 			me.model.exercises.sort(sortExercisesFunction);
 			me.model.recalcExerciseMap();
 		}
 
 		$(c.select.exerciseDialog).modal('hide');
+		weiteExercise(eId);
 	}
 
 	function onCloseExerciseDialog() {
@@ -92,8 +97,6 @@
 		me.model.exerciseDialogName('');
 		me.model.exerciseDialogPeriod('');
 	}
-
-
 
 	/*
 	 * Private methods
@@ -117,8 +120,27 @@
 		}
 	}
 
+	function weiteExercise(id) {
+		var m = me.model.getWriteModel(id);
+		if (typeof m === 'undefined' || m === null) {
+			console.error('Cannot get write model by ID specified.');
+			return;
+		}
+		$.post(
+			c.url.putExercise,
+			m,
+			function(data) {},
+			'json'
+		);
+	}
+
+	/*
+	 * View model
+	 */
+
 	function ExerciseListPageViewModel() {
 		var self = this;
+		self.exerciseMap = [];
 		self.exercises = ko.observableArray([]);
 		self.exerciseDialogMode = ko.observable();
 		self.exerciseDialogTitle = ko.computed(function() {
@@ -153,11 +175,36 @@
 		},
 
 		recalcExerciseMap: function() {
+			var self = this;
 			var len = me.model.exercises().length;
-			me.exerciseMap = [];
+			self.exerciseMap = [];
 			for (var i = 0; i < len; i++) {
-				me.exerciseMap[me.model.exercises()[i].id()] = i;
+				self.exerciseMap[me.model.exercises()[i].id()] = i;
 			};
+		},
+
+		getExerciseById: function(id) {
+			var self = this;
+			var arrId = self.exerciseMap[id];
+			if (typeof arrId !== 'undefined' && arrId !== null) {
+				return self.exercises()[arrId];
+			}
+
+			return undefined;
+		},
+
+		getWriteModel: function(id) {
+			var self = this;
+			var exercise = self.getExerciseById(id);
+			if (typeof exercise !== 'undefined' && exercise !== null) {
+				return {
+					id: exercise.id(),
+					name: exercise.name(),
+					period: parseInt(exercise.period())
+				}
+			} else {
+				return undefined;
+			}
 		}
 	};
 	
