@@ -22,5 +22,7 @@
 	"AddNewExercisePeriod": "Enter a period between workouts (in days)",
 	"EditExerciseTitle": "Edit Exercise",
 	"Save": "Save",
-	"Close": "Close"
+	"Close": "Close",
+
+	"BeforeUnloadMsg": "Workout is in progress."
 }

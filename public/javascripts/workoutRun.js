@@ -8,7 +8,8 @@
 			editNumberOfSetsButton: '#editNumberOfSets',
 			numberOfSetsInput: '#numberOfSets',
 			startPauseWorkoutButton: '#startPauseWorkout',
-			saveWorkoutButton: "#saveWorkout"
+			saveWorkoutButton: "#saveWorkout",
+			beforeUnloadMsgInput: "#beforeUnloadMsg"
 		},
 		url: {
 			loadWorkoutTemplate: '/data/workouts/{id}',
@@ -35,6 +36,7 @@
 	me.workoutProgressInterval = null;
 	me.setProgressInterval = null;
 	me.audioPlayer = null;
+	me.beforeUnloadMsg = null;
 
 	function runScript(){
 		$(document).ready(function(){
@@ -43,6 +45,7 @@
 			ko.applyBindings(model);
 			model.loadWorkout(workoutId);
 			me.audioPlayer = document.getElementById(c.attr.audioPlayerId);
+			me.beforeUnloadMsg = $(c.select.beforeUnloadMsgInput).val();
 
 			$("body")
 				.on('click', c.select.editNumberOfSetsButton, onEditNumberOfSetsButtonClick)
@@ -95,6 +98,7 @@
 		me.model.inProgress(start);
 		
 		if (start) {
+			pageClosingPrevent();
 
 			// start timer
 			me.workoutProgressInterval = setInterval(function() {
@@ -112,6 +116,7 @@
 				me.model.sets()[0].state(c.set.state.started);
 			}
 		} else {
+			pageClosingAllow();
 
 			// stop timer
 			clearInterval(me.workoutProgressInterval);
@@ -152,6 +157,23 @@
 				me.model.sets()[index].actualTime(time);
 			}
 		}, 1000);
+	}
+
+	function pageClosingPrevent() {
+		window.onbeforeunload = onBeforeUnload;
+	}
+
+	function pageClosingAllow() {
+		window.onbeforeunload = undefined;
+	}
+
+	function onBeforeUnload() {
+		event = event || window.event
+		// For IE and Firefox
+		if (event)
+			event.returnValue = me.beforeUnloadMsg;
+		// For Safari
+		return me.beforeUnloadMsg
 	}
 
 	/*
