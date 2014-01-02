@@ -37,6 +37,7 @@
 	me.setProgressInterval = null;
 	me.audioPlayer = null;
 	me.beforeUnloadMsg = null;
+	me.documentTitle = document.title;
 
 	function runScript(){
 		$(document).ready(function(){
@@ -150,11 +151,13 @@
 					// stop workout timer
 					startPauseWorkout(false);
 				}
+				document.title = me.documentTitle;
 			}
 			else
 			{
 				time.setMilliseconds(time.getMilliseconds() - 1000);
 				me.model.sets()[index].actualTime(time);
+				document.title = getFormattedTime(time);
 			}
 		}, 1000);
 	}
