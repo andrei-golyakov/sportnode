@@ -3,15 +3,17 @@ extends layout
 block content
 	h1 Sport Node
 	p #{__('Welcome')}
-	p Try our workout helper right now!
 
-	div(style='height: 300px;')
-		div Sign In with your favorite social service
-		.clearfix
-			.pull-left
-				a(href='/auth/facebook' title='Facebook')
-					.social-icon.s30.fb
-			.pull-left &nbsp;
-			.pull-left
-				a(href='/auth/vkontakte' title='VKontakte')
-					.social-icon.s30.vk
+	if (everyauth.loggedIn)
+		a(href='/workouts') #{__('Workouts')}
+	else
+		div(style='height: 300px;')
+			div #{__('SignInThirdPartyMsg')}
+			.clearfix
+				.pull-left
+					a(href='/auth/facebook' title='Facebook')
+						.social-icon.s30.fb
+				.pull-left &nbsp;
+				.pull-left
+					a(href='/auth/vkontakte' title='VKontakte')
+						.social-icon.s30.vk
