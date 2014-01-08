@@ -581,9 +581,12 @@
 .container-fixed() {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  (@grid-gutter-width / 2);
-  padding-right: (@grid-gutter-width / 2);
   .clearfix();
+}
+
+.container-paddings() {
+  padding-left:  (@grid-gutter-width);
+  padding-right: (@grid-gutter-width);
 }
 
 // Creates a wrapper for a series of columns

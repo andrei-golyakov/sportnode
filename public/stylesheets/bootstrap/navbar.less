@@ -423,12 +423,26 @@
       border-bottom-color: @navbar-default-link-hover-color;
     }
 
+    > .dropdown {
+      &:hover,
+      &:focus {
+        background-color: @navbar-default-link-hover-bg;
+        a {
+          color: @navbar-default-link-hover-color;
+        }
+        .caret {
+          border-top-color: @navbar-default-link-active-color;
+          border-bottom-color: @navbar-default-link-active-color;
+        }
+      }
+    }
+
     // Remove background color from open dropdown
     > .open > a {
       &,
       &:hover,
       &:focus {
-        background-color: @navbar-default-link-active-bg;
+        background-color: @navbar-default-link-hover-bg;
         color: @navbar-default-link-active-color;
         .caret {
           border-top-color: @navbar-default-link-active-color;

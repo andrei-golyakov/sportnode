@@ -1,9 +1,9 @@
 doctype 5
-html(lang="en")
+html(lang="#{__(locale)}")
 	head
-		title Sprot Node
+		title SprotNode
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
-		link(rel='stylesheet', href='/stylesheets/style.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
 		block styles
 		script(type='text/javascript', src='/javascripts/jquery-2.0.3.min.js')
 		script(type='text/javascript', src='/javascripts/knockout-3.0.0.js')
@@ -13,36 +13,39 @@ html(lang="en")
 		script(type='text/javascript', src='/javascripts/md5.js')
 		block scripts
 	body
-		.navbar.navbar-inverse.navbar-static-top(role='navigation')
-			.container
+		.body.container
+			.navbar.navbar-default.navbar-static-top(role='navigation')
 				.navbar-header
 					button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='/') Sport Node
+					a.navbar-brand(href='/')
+						span Sport
+						span.point •
+						span Node
 				.navbar-collapse.collapse
-					ul.nav.navbar-nav
-						li(class=page === 'Home' ? 'active' : '')
-							a(href='/') #{__('Home')}
-						if (everyauth.loggedIn)
+					if (everyauth.loggedIn)
+						ul.nav.navbar-nav.navbar-right
+							li(class=page === 'Home' ? 'active' : '')
+								a(href='/') #{__('Home')}
 							li(class=page === 'Workouts' ? 'active' : '')
 								a(href='/workouts') #{__('Workouts')}
 							li(class=page === 'Exercises' ? 'active': '')
-								a(href='/exercises') #{__('ConfigureExercises')}
-					if (everyauth.loggedIn)
-						ul.nav.navbar-nav.navbar-right
+								a(href='/exercises') #{__('Settings')}
 							li.dropdown
-								a.dropdown-toggle(href='#', data-toggle='dropdown')
-									img(src='#{everyauth.user.pictureUrl}', style='max-height: 20px; margin-right: 10px;', data-xxx='hardcoded styles')
+								a.navbar-account.dropdown-toggle(href='#', data-toggle='dropdown')
+									img(src='#{everyauth.user.pictureUrl}')
 									| #{everyauth.user.name} &nbsp;
 									b.caret
 								ul.dropdown-menu
 									li
 										a#logoutButton(href='/logout') #{__('Logout')}
-		.container
 			block content
 
-			footer
-				p
+		.footer.container
+			.container-paddings.clearfix
+				.pull-left
 					| #{__('DevelopedBy')}
+				.pull-right
+					a(href='https://github.com/andrei-golyakov/sportnode') #{__('ProjectOnGitHub')}

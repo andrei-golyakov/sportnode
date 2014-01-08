@@ -1,19 +1,70 @@
 extends layout
 
 block content
-	h1 Sport Node
-	p #{__('Welcome')}
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			.promo.container-paddings
+				span.bold.color-lime SportNode: 
+				span #{__('SuperPowerful')} 
+				span.color-lime #{__('Amp')} 
+				span #{__('IntelligenceWorkoutTracker')}
 
-	if (everyauth.loggedIn)
-		a(href='/workouts') #{__('Workouts')}
-	else
-		div(style='height: 300px;')
-			div #{__('SignInThirdPartyMsg')}
-			.clearfix
-				.pull-left
-					a(href='/auth/facebook' title='#{__("Facebook")}')
-						.social-icon.s30.fb
-				.pull-left &nbsp;
-				.pull-left
-					a(href='/auth/vkontakte' title='#{__("Vkontakte")}')
-						.social-icon.s30.vk
+	.container-paddings
+		.row.main-content-indent.margin-bottom
+			.col-xs-12.col-sm-12.col-md-6.col-lg-5
+				.welcome.margin-bottom
+					.title.margin-bottom #{__('Welcome')}
+					if (everyauth.loggedIn)
+						.text.margin-bottom
+							a(href='/workouts') #{__('BeginToPlaySports')}
+					else
+						.text #{__('BeginToPlaySports')}
+						.margin-bottom #{__('SignInThirdPartyMsg')}
+						.social-icon-container
+							.inline-block.clearfix
+								a.pull-left(href='/auth/facebook' title='#{__("Facebook")}')
+									.social-icon.s30.fb
+								a.pull-left(href='/auth/vkontakte' title='#{__("Vkontakte")}')
+									.social-icon.s30.vk
+
+				.under-welcome.margin-bottom #{__('UnderWelcomeMessage')}
+				.under-welcome.italic.margin-bottom #{__('UnderWelcomeMessage2')}
+
+			.col-xs-12.col-sm-12.col-md-6.col-lg-7
+				#carousel.carousel.slide(data-ride='carousel')
+					ol.carousel-indicators
+						li(data-target='#carousel', data-slide-to='0').active
+						li(data-target='#carousel', data-slide-to='1')
+						li(data-target='#carousel', data-slide-to='2')
+					.carousel-inner
+						.item.active
+							img(src='/images/carousel-slide1.png', alt='')
+						.item
+							img(src='/images/carousel-slide2.png', alt='')
+						.item
+							img(src='/images/carousel-slide3.png', alt='')
+					a.left.carousel-control(href='#carousel' data-slide='prev')
+						span.glyphicon.glyphicon-chevron-left
+					a.right.carousel-control(href='#carousel' data-slide='next')
+						span.glyphicon.glyphicon-chevron-right
+
+		.border
+		.row
+			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
+				.promo-tile 
+					.circle
+						.glyphicon.glyphicon-calendar
+					.title #{__('PromoTileScheduleTitle')}
+					.text #{__('PromoTileScheduleText')}
+			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
+				.promo-tile
+					.circle
+						.glyphicon.glyphicon-time
+					.title #{__('PromoTileTimerTitle')}
+					.text #{__('PromoTileTimerText')}
+			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
+				.promo-tile
+					.circle
+						.glyphicon.glyphicon-star
+					.title #{__('PromoTileMotivationTitle')}
+					.text #{__('PromoTileMotivationText')}
