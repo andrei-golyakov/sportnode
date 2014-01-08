@@ -19,12 +19,12 @@ block content
 				.form-group.form-inline.change-sets-number
 					input#numberOfSets.input-lg.form-control(data-bind='value: numberOfSets, enable: editNumberOfSetsEnabled()', type='number')
 					button#editNumberOfSets.btn.btn-lg(type='button', data-bind='css: { "btn-default": !editNumberOfSetsEnabled(), "btn-success": editNumberOfSetsEnabled() }')
-						span.glyphicon(data-bind='css: { "glyphicon-pencil": !editNumberOfSetsEnabled(), "glyphicon-ok": editNumberOfSetsEnabled() }')
+						span.fa(data-bind='css: { "fa-pencil": !editNumberOfSetsEnabled(), "fa-check": editNumberOfSetsEnabled() }')
 
 					button#startPauseWorkout.btn.btn-lg.pull-right(type='button', data-bind='css: { "btn-default": inProgress(), "btn-success": !inProgress() }')
 						span(data-bind='text: actualTimeFormatted')
 						span &nbsp;
-						span.glyphicon(data-bind='css: { "glyphicon-play": !inProgress(), "glyphicon-pause": inProgress() }')
+						span.fa(data-bind='css: { "fa-play": !inProgress(), "fa-pause": inProgress() }')
 
 				.form-group.sets
 					table.table
@@ -58,12 +58,12 @@ block content
 										'}')
 										span(data-bind='text: actualTimeFormatted')
 										span &nbsp;
-										span.glyphicon(data-bind=
+										span.fa(data-bind=
 											'css: { ' + 
-											'  "glyphicon-minus-sign": isBlocked(), ' +
-											'  "glyphicon-play": isStarted(), ' +
-											'  "glyphicon-time": isRelaxing(), ' +
-											'  "glyphicon-ok": isFinished() ' +
+											'  "fa-minus-circle": isBlocked(), ' +
+											'  "fa-play": isStarted(), ' +
+											'  "fa-clock-o": isRelaxing(), ' +
+											'  "fa-check": isFinished() ' +
 											'}') 
 
 			.col-lg-6.col-md-6.col-sm-4
@@ -94,6 +94,6 @@ block content
 
 				.form-group
 					button#saveWorkout.btn.btn-lg.btn-block.btn-primary(type='button')
-						span.glyphicon.glyphicon-cloud-upload
+						span.fa.fa-cloud-upload
 						span &nbsp;
 						span Save Workout
