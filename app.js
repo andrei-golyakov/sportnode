@@ -27,6 +27,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('secret'));
 app.use(express.session());
+app.use(express.compress());
 if ('production' == app.get('env')) {
 	app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
 }
