@@ -3,10 +3,13 @@ SportNode
 
 [![Build Status](https://travis-ci.org/andrei-golyakov/sportnode.png)](https://travis-ci.org/andrei-golyakov/sportnode)
 
-Simple workout tracker web app.
+[SportNode](http://www.sport-node.com/) project is now on-line.
+
+Simple workout tracker web app
 
 Technologies and frameworks:
 ----------------------------
+
 * Node.js
 * Express
 * Jade
