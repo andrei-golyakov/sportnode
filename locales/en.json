@@ -44,8 +44,8 @@
 
 	"AboutSchedulerHeader": "We came up with an alternative way of planning workouts based on your priorities!",
 	"AboutSchedulerExampleHeader": "For example, you decided to thoroughly strengthen the abdominal muscles, a little to develop the muscles of the hands and just to keep in tone the legs and shoulders:",
-	"AboutSchedulerExample1Html": "<b>Abdominal muscles</b> — is a target number one;",
-	"AboutSchedulerExample2Html": "<b>Msuscles of the hands</b> — on the second place;",
+	"AboutSchedulerExample1Html": "<b>Abdominal muscles</b> — target number one;",
+	"AboutSchedulerExample2Html": "<b>Muscles of the hands</b> — on the second place;",
 	"AboutSchedulerExample3Html": "<b>Legs</b> and <b>shoulders</b> — on the third place.",
 	"AboutSchedulerAlmostDoneHtml": "Making a list of priorities, consider that <b>you have already done most of the work</b> on planning.",
 	"AboutSchedulerExampleTableHeader": "In our system, the schedule will look like this:",
@@ -55,7 +55,7 @@
 	"PullupsExerciseTitle": "Pull-ups",
 	"SitupsExerciseTitle": "Sit-ups",
 	"DumbbellsSideLateralRaiseTitle": "Dumbbell: side lateral raise",
-	"AboutSchedulerSimplePlanningWarning1Html": "<b>Common planning of training programm</b> — is a very complicated process that takes a lot of time.",
+	"AboutSchedulerSimplePlanningWarning1Html": "<b>Common planning of training program</b> — is a very complicated process that takes a lot of time.",
 	"AboutSchedulerSimplePlanningWarning2Html": "Choosing the common schedulers, you get the schedule, often tied to the days of the week and poorly allow any deviations.",
 	"AboutSchedulerSimplePlanningWarning3Html": "For example, missing (for some reason) of trainings scheduled for Tuesday, you run the risk of knock training schedule for the entire week.",
 	"AboutSchedulerSimplePlanningWarning4Html": "<b>This can be avoided!</b>",
@@ -68,7 +68,7 @@
 	"AboutSchedulerCardsOrderDescription1Html": "Having performed the exercise, it is marked with green, indicating that it is done for today;",
 	"AboutSchedulerCardsOrderDescription2Html": "Yellow card means that today it is necessary to perform the exercise;",
 	"AboutSchedulerCardsOrderDescription3Html": "If exercise is not done in a proper day, the next day its card will colored with red, and it will move into the top of the queue.",
-	"AboutSchedulerConclusion": "This approach allows to execute missed training in the future according to a predefined priority. After a while you again bring all the cards to the green status and will continue trainings according to the schedule.",
+	"AboutSchedulerConclusion": "This approach allows performing of missed training in the future according to a predefined priority. After a while you again bring all the cards to the green status and will continue trainings according to the schedule.",
 
 	"DescriptionComingSoon": "Description coming soon..."
 }
