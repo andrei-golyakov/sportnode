@@ -2,6 +2,25 @@
 	background-color: darken(@background, 8%);
 }
 
+.transition(@property, @duration, @effect) {
+	-webkit-transition: @property @duration @effect;
+	-moz-transition: @property @duration @effect;
+	-o-transition: @property @duration @effect;
+	-ms-transition: @property @duration @effect;
+	transition: @property @duration @effect;
+}
+
+.transition-fast(@property, @duration: 0.1s, @effect: ease-out)
+{
+	.transition(@property, @duration, @effect);
+}
+
+.transition-slow(@property, @duration: 0.5s, @effect: ease-out)
+{
+	.transition(@property, @duration, @effect);
+}
+
+
 .active-background {
 	.opacity(0.5);
 }

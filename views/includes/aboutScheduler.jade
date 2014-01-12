@@ -1,0 +1,58 @@
+.row
+	.col-xs-12.col-sm-12.col-md-12.col-lg-12.margin-bottom
+		h3#scheduler #{__('PromoTileScheduleTitle')}
+.row
+	.col-xs-12.col-sm-12.col-md-8.col-lg-8.margin-bottom
+		h4 #{__('AboutSchedulerHeader')}
+		p #{__('AboutSchedulerExampleHeader')}
+			ul
+				li !{__('AboutSchedulerExample1Html')}
+				li !{__('AboutSchedulerExample2Html')}
+				li !{__('AboutSchedulerExample3Html')}
+		.alert.alert-success 
+			p !{__('AboutSchedulerAlmostDoneHtml')}
+		table.table.table-responsive.table-striped
+			caption #{__('AboutSchedulerExampleTableHeader')}
+			thead
+				tr
+					th #{__('ExerciseName')}
+					th
+						abbr(title='#{__("AboutSchedulerExercisePeriodTitle")}') #{__('ExercisePeriod')}
+			tbody
+				tr
+					td #{__('ExerciseOnAbdominalBenchTitle')}
+					td 1
+				tr
+					td #{__('PushupsExerciseTitle')}
+					td 2
+				tr
+					td #{__('PullupsExerciseTitle')}
+					td 2
+				tr
+					td #{__('SitupsExerciseTitle')}
+					td 3
+				tr
+					td #{__('DumbbellsSideLateralRaiseTitle')}
+					td 3
+	.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
+		.alert.alert-danger
+			p !{__('AboutSchedulerSimplePlanningWarning1Html')}
+			p !{__('AboutSchedulerSimplePlanningWarning2Html')}
+			p !{__('AboutSchedulerSimplePlanningWarning3Html')}
+			p !{__('AboutSchedulerSimplePlanningWarning4Html')}
+.row
+	.col-xs-12.col-sm-12.col-md-12.col-lg-12.margin-bottom
+		.alert.alert-success
+			p !{__('AboutSchedulerDoneAbstract')}
+		p #{__('AboutSchedulerAccordingToIt')}
+			ul
+				li !{__('AboutSchedulerResult1Html')}
+				li !{__('AboutSchedulerResult2Html')}
+				li !{__('AboutSchedulerResult3Html')}
+		p #{__('AboutSchedulerCardsOrderDescriptionTitle')}
+			ul
+				li !{__('AboutSchedulerCardsOrderDescription1Html')}
+				li !{__('AboutSchedulerCardsOrderDescription2Html')}
+				li !{__('AboutSchedulerCardsOrderDescription3Html')}
+		p
+			.alert.alert-success #{__('AboutSchedulerConclusion')}

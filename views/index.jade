@@ -4,13 +4,7 @@ block scripts
 	script(type='text/javascript', src='/javascripts/md5.js', defer)
 
 block content
-	.row
-		.col-xs-12.col-sm-12.col-md-12.col-lg-12
-			.promo.container-paddings
-				span.bold.color-lime SportNode: 
-				span #{__('SuperPowerful')} 
-				span.color-lime #{__('Amp')} 
-				span #{__('IntelligenceWorkoutTracker')}
+	include includes/promoLine
 
 	.container-paddings
 		.row.main-content-indent.margin-bottom
@@ -52,22 +46,4 @@ block content
 						span.fa.fa-chevron-right
 
 		.border
-		.row
-			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
-				.promo-tile 
-					.circle
-						.fa.fa-calendar
-					.title #{__('PromoTileScheduleTitle')}
-					.text #{__('PromoTileScheduleText')}
-			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
-				.promo-tile
-					.circle
-						.fa.fa-clock-o
-					.title #{__('PromoTileTimerTitle')}
-					.text #{__('PromoTileTimerText')}
-			.col-xs-12.col-sm-12.col-md-4.col-lg-4.margin-bottom
-				.promo-tile
-					.circle
-						.fa.fa-thumbs-up
-					.title #{__('PromoTileMotivationTitle')}
-					.text #{__('PromoTileMotivationText')}
+			include includes/aboutPanel

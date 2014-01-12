@@ -9,6 +9,16 @@ exports.index = function(req, res) {
 };
 
 /*
+ * GET about page.
+ */
+
+exports.about = function(req, res) {
+	res.render('about', {
+		page: 'About'
+	});
+};
+
+/*
  * GET logout
  */
 

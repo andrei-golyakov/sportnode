@@ -5,6 +5,7 @@ var exercise = require('./handlers/exercise');
 exports.routes = function(app) {
 	app.get('/', routes.index);
 	app.get('/logout', routes.logout);
+	app.get('/about', routes.about);
 
 	app.get('/workouts', workout.index);
 	app.get('/workouts/run/:id', workout.run);
