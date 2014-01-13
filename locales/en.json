@@ -7,7 +7,7 @@
 	"Sign in": "Sign In",
 	"Logout": "Logout",
 	"SignInThirdPartyMsg": "Sign In with your favorite social service",
-	"DevelopedBy": "Developed by Andrei Golyakov",
+	"Developed by %sAndrei Golyakov%s": "Developed by %sAndrei Golyakov%s",
 	"ProjectOnGitHub": "Project on GitHub",
 	
 	"SuperPowerful": "Super powerful",
