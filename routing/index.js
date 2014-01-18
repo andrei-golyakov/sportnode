@@ -1,8 +1,11 @@
+var ensureLanguage = require("./languageChecker").ensureLanguage;
+
 /*
  * GET home page.
  */
 
 exports.index = function(req, res) {
+	ensureLanguage(req, res);
 	res.render('index', {
 		page: 'Home'
 	});
@@ -13,6 +16,7 @@ exports.index = function(req, res) {
  */
 
 exports.about = function(req, res) {
+	ensureLanguage(req, res);
 	res.render('about', {
 		page: 'About'
 	});

@@ -4,9 +4,12 @@ html(lang="#{__(locale)}")
 		title SprotNode
 		meta(charset='UTF-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
-		link(rel='alternate', hreflang='x-default', href='http://www.sport-node.com/')
+		link(rel='alternate', hreflang='x-default', href='http://www.sport-node.com')
+		link(rel='alternate', hreflang='ru', href='http://www.sport-node.com/ru')
+		link(rel='alternate', hreflang='en', href='http://www.sport-node.com/en')
+
 		link(rel='stylesheet', href='/stylesheets/style.min.css')
-		link(rel='shortcut icon', href='images/favicon.ico')
+		link(rel='shortcut icon', href='/images/favicon.ico')
 		block styles
 		script(type='text/javascript', src='/javascripts/jquery-2.0.3.min.js', defer)
 		script(type='text/javascript', src='/javascripts/bootstrap.min.js', defer)
@@ -21,7 +24,7 @@ html(lang="#{__(locale)}")
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='/')
+					a.navbar-brand(href='/#{__(locale)}')
 						span Sport
 						span.point •
 						span Node
@@ -29,11 +32,11 @@ html(lang="#{__(locale)}")
 					if (everyauth.loggedIn)
 						ul.nav.navbar-nav.navbar-right
 							li(class=page === 'Home' ? 'active' : '')
-								a(href='/') #{__('Home')}
+								a(href='/#{__(locale)}') #{__('Home')}
 							li(class=page === 'Workouts' ? 'active' : '')
-								a(href='/workouts') #{__('Workouts')}
+								a(href='/#{__(locale)}/workouts') #{__('Workouts')}
 							li(class=page === 'Exercises' ? 'active': '')
-								a(href='/exercises') #{__('Settings')}
+								a(href='/#{__(locale)}/exercises') #{__('Settings')}
 							li.dropdown
 								a.navbar-account.dropdown-toggle(href='#', data-toggle='dropdown')
 									img(src='#{everyauth.user.pictureUrl}')

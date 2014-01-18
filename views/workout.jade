@@ -17,7 +17,7 @@ block content
 						' "warning-time": "warning" === dateStatus(),' +
 						' "bad-time": "bad" === dateStatus()' +
 						' }')
-					a(data-bind='attr: { href: "/workouts/run/" + id() }')
+					a(data-bind='attr: { href: "/#{__(locale)}/workouts/run/" + id() }')
 						.item-header
 							h3.item-name(data-bind='text: exerciseName')
 						.item-footer.clearfix

@@ -1,13 +1,15 @@
 var workoutManagerFactory = require('../lib/data/workoutManagerFactory').WorkoutManagerFactory;
 var workoutManager = workoutManagerFactory.createWorkoutManager();
+var ensureLanguage = require("./languageChecker").ensureLanguage;
 
 /*
  * GET exercises index page.
  */
 
 exports.index = function(req, res) {
+	ensureLanguage(req, res);
 	if (req.user) {
--		res.render('exercise', {
+		res.render('exercise', {
 			page: 'Exercises'
 		});
 	} else {
