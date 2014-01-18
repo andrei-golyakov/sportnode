@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>http://www.sport-node.com</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/en</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/ru</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en" />
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/en/about</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/ru/about</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about" />
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/en/about#scheduler</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#scheduler" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#scheduler" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/ru/about#scheduler</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#scheduler" />
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#scheduler" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/en/about#timer</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#timer" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#timer" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/ru/about#timer</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#timer" />
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#timer" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/en/about#motivation</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#motivation" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#motivation" />
+    </url>
+    <url>
+        <loc>http://www.sport-node.com/ru/about#motivation</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="http://www.sport-node.com/en/about#motivation" />
+        <xhtml:link rel="alternate" hreflang="ru" href="http://www.sport-node.com/ru/about#motivation" />
+    </url>
+</urlset>
