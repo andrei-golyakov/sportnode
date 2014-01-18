@@ -1,20 +1,22 @@
 var workoutManagerFactory = require('../lib/data/workoutManagerFactory').WorkoutManagerFactory;
 var workoutManager = workoutManagerFactory.createWorkoutManager();
-var ensureLanguage = require("./languageChecker").ensureLanguage;
+var ensureLanguage = require("../lib/helpers/routingLanguageHelper").ensureLanguage;;
+var securityHelper = require("../lib/helpers/securityHelper");
+var ensureUserLoggedIn = securityHelper.ensureUserLoggedIn;
+var ensureUserLoggedInAjax = securityHelper.ensureUserLoggedInAjax;
 
 /*
  * GET workouts index page.
  */
 
 exports.index = function(req, res) {
-	ensureLanguage(req, res);
-	if (req.user) {
-		res.render('workout', {
-			page: 'Workouts'
-		});
-	} else {
-		res.redirect('/');
+	if (!ensureLanguage(req, res) || !ensureUserLoggedIn(req, res)) {
+		return;
 	}
+	res.render('workout', {
+		page: 'Workouts',
+		locale: req.locale
+	});
 };
 
 /*
@@ -22,15 +24,14 @@ exports.index = function(req, res) {
  */
 
 exports.run = function(req, res) {
-	ensureLanguage(req, res);
-	if (req.user) {
-		res.render('workoutRun', {
-			page: 'Workouts',
-			id: req.params.id
-		});
-	} else {
-		res.redirect('/');
+	if (!ensureLanguage(req, res) || !ensureUserLoggedIn(req, res)) {
+		return;
 	}
+	res.render('workoutRun', {
+		page: 'Workouts',
+		id: req.params.id,
+		locale: req.locale
+	});
 };
 
 /*
@@ -43,13 +44,12 @@ exports.data = {
 	 */
 
 	getList: function(req, res) {
-		if (req.user) {
-			workoutManager.getWorkouts(req.user.id, function(workouts){
-				res.send(workouts);
-			});
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		workoutManager.getWorkouts(req.user.id, function(workouts){
+			res.send(workouts);
+		});
 	},
 
 	/*
@@ -57,13 +57,12 @@ exports.data = {
 	 */
 	
 	getLatest: function(req, res) {
-		if (req.user) {
-			workoutManager.getWorkout(req.user.id, req.params.id, function(workout) {
-				res.send(workout);
-			});
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		workoutManager.getWorkout(req.user.id, req.params.id, function(workout) {
+			res.send(workout);
+		});
 	},
 
 	/*
@@ -71,12 +70,11 @@ exports.data = {
 	 */
 
 	updateLatest: function(req, res) {
-		if (req.user) {
-			workoutManager.updateLatestWorkout(req.user.id, req.params.id, req.body, function(result) {
-				res.send(result);
-			})
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		workoutManager.updateLatestWorkout(req.user.id, req.params.id, req.body, function(result) {
+			res.send(result);
+		});
 	}
 };

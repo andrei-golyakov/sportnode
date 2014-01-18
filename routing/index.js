@@ -1,13 +1,16 @@
-var ensureLanguage = require("./languageChecker").ensureLanguage;
+var ensureLanguage = require("../lib/helpers/routingLanguageHelper").ensureLanguage;
 
 /*
  * GET home page.
  */
 
 exports.index = function(req, res) {
-	ensureLanguage(req, res);
+	if (!ensureLanguage(req, res)) {
+		return;
+	}
 	res.render('index', {
-		page: 'Home'
+		page: 'Home',
+		locale: req.locale
 	});
 };
 
@@ -16,9 +19,12 @@ exports.index = function(req, res) {
  */
 
 exports.about = function(req, res) {
-	ensureLanguage(req, res);
+	if (!ensureLanguage(req, res)) {
+		return;
+	}
 	res.render('about', {
-		page: 'About'
+		page: 'About',
+		locale: req.locale
 	});
 };
 

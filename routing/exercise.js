@@ -1,20 +1,22 @@
 var workoutManagerFactory = require('../lib/data/workoutManagerFactory').WorkoutManagerFactory;
 var workoutManager = workoutManagerFactory.createWorkoutManager();
-var ensureLanguage = require("./languageChecker").ensureLanguage;
+var ensureLanguage = require("../lib/helpers/routingLanguageHelper").ensureLanguage;
+var securityHelper = require("../lib/helpers/securityHelper");
+var ensureUserLoggedIn = securityHelper.ensureUserLoggedIn;
+var ensureUserLoggedInAjax = securityHelper.ensureUserLoggedInAjax;
 
 /*
  * GET exercises index page.
  */
 
 exports.index = function(req, res) {
-	ensureLanguage(req, res);
-	if (req.user) {
-		res.render('exercise', {
-			page: 'Exercises'
-		});
-	} else {
-		res.redirect('/');
+	if (!ensureLanguage(req, res) || !ensureUserLoggedIn(req, res)) {
+		return;
 	}
+	res.render('exercise', {
+		page: 'Exercises',
+		locale: req.locale
+	});
 };
 
 /*
@@ -28,13 +30,12 @@ exports.data = {
 	 */
 
 	getList: function(req, res) {
-		if (req.user) {
-			workoutManager.getExercises(req.user.id, function(exercises){
-				res.send(exercises);
-			});
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		workoutManager.getExercises(req.user.id, function(exercises){
+			res.send(exercises);
+		});
 	},
 
 	/*
@@ -42,13 +43,12 @@ exports.data = {
 	 */
 
 	put: function(req, res) {
-		if (req.user) {
-			workoutManager.putExercise(req.user.id, req.body, function(result){
-				res.send(result);
-			});
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		workoutManager.putExercise(req.user.id, req.body, function(result){
+			res.send(result);
+		});
 	},
 
 	/*
@@ -56,13 +56,12 @@ exports.data = {
 	 */
 
 	delete: function(req, res) {
-		if (req.user) {
-			console.log('deleteItem: ' + req.body.id);
-			// workoutManager.deleteExercise(req.user.id, req.body.id, function(exercises){
-			// 	res.send(exercises);
-			// });
-		} else {
-			res.send(401).end();
+		if (!ensureUserLoggedInAjax(req, res)) {
+			return;
 		}
+		console.log('deleteItem: ' + req.body.id);
+		// workoutManager.deleteExercise(req.user.id, req.body.id, function(exercises){
+		// 	res.send(exercises);
+		// });
 	}
 };

@@ -41,7 +41,7 @@ app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(app.router);
-var routes = require('./routes').routes(app);
+var routes = require('./routing/routes').routes(app);
 
 if ('development' === app.get('env')) {
 	app.use(express.errorHandler());

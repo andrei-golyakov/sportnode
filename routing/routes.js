@@ -1,6 +1,6 @@
-var routes = require('./handlers');
-var workout = require('./handlers/workout');
-var exercise = require('./handlers/exercise');
+var routes = require('./index');
+var workout = require('./workout');
+var exercise = require('./exercise');
 var i18n = require("i18n");
 
 exports.routes = function(app) {
