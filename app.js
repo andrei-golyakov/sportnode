@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 var i18n = require("i18n");
 var everyauth = require('everyauth');
@@ -15,6 +16,10 @@ i18n.configure({
 });
 
 var everyauthHelper = require('./lib/helpers/everyauthHelper');
+
+var privateKey  = fs.readFileSync('./config/ssl-old-key.pem', 'utf8');
+var certificate = fs.readFileSync('./config/ssl-old-certif.pem', 'utf8');
+var credentials = { key: privateKey, cert: certificate };
 
 var app = express();
 
@@ -49,4 +54,7 @@ if ('development' === app.get('env')) {
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Node.js server listening on port ' + app.get('port'));
+});
+https.createServer(credentials, app).listen(443, function(){
+	console.log('Node.js server listening on port 443');
 });
