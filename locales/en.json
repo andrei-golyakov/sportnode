@@ -41,6 +41,14 @@
 	"Close": "Close",
 
 	"BeforeUnloadMsg": "Workout is in progress.",
+	"PlannedNumber": "Planned",
+	"ActualNumber": "Actual",
+	"RelaxSeconds": "Relax",
+	"PreviousDate": "Previous execution date",
+	"PreviousDuration": "Previous duration",
+	"StartedAt": "Started at",
+	"ActualTimeSec": "Actual time (sec)",
+	"SaveWorkout": "Save Workout",
 
 	"AboutSchedulerHeader": "We came up with an alternative way of planning workouts based on your priorities!",
 	"AboutSchedulerExampleHeader": "For example, you decided to thoroughly strengthen the abdominal muscles, a little to develop the muscles of the hands and just to keep in tone the legs and shoulders:",

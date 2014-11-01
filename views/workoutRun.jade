@@ -33,7 +33,7 @@ block content
 						thead
 							tr
 								th #{__('PlannedNumber')}
-								th #{__('ActualNumbre')}
+								th #{__('ActualNumber')}
 								th #{__('RelaxSeconds')}
 								th.buttons &nbsp;
 						tbody(data-bind='foreach: sets')
@@ -51,7 +51,7 @@ block content
 									input.form-control.input-lg(data-bind='value: relaxTime', type='text')
 								td
 									button.btn.btn-lg(data-bind=
-										'attr : { "data-set-relax-button": $index }, ' +
+										'attr : { "dadta-set-relax-button": $index }, ' +
 										'enable: isStarted() || isRelaxing, ' + 
 										'css: { ' + 
 										'  "btn-success": isStarted(), ' +
@@ -75,27 +75,27 @@ block content
 				.form-group
 					.alert.alert-info
 						div
-							span Previous date:
+							span #{__('PreviousDate')}:
 							span &nbsp;
 							span(data-bind='text: date')
 
 						div
-							span Previous time: 
+							span #{__('PreviousDuration')}:
 							span ~
 							span(data-bind='text: estimatedTime')
 							span &nbsp;minutes
 
 				.form-group
 					div
-						label(for='curStartDate') Started at: &nbsp;
+						label(for='curStartDate') #{__('StartedAt')}: &nbsp;
 						input#curStartDate(type='datetime' data-bind='value: curStartDate')
 
 					div
-						label(for='actualTimeSec') Actual time (sec): &nbsp;
+						label(for='actualTimeSec') #{__('ActualTimeSec')}: &nbsp;
 						input#curStartDate(type='number' data-bind='value: actualTimeSec')
 
 				.form-group
 					button#saveWorkout.btn.btn-lg.btn-block.btn-primary(type='button')
 						span.fa.fa-cloud-upload
 						span &nbsp;
-						span Save Workout
+						span #{(__'SaveWorkout')}
