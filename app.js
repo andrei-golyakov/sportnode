@@ -17,9 +17,12 @@ i18n.configure({
 
 var everyauthHelper = require('./lib/helpers/everyauthHelper');
 
-var privateKey  = fs.readFileSync('./config/ssl-old-key.pem', 'utf8');
-var certificate = fs.readFileSync('./config/ssl-old-certif.pem', 'utf8');
-var credentials = { key: privateKey, cert: certificate };
+var privateKey = fs.readFileSync('./config/ssl-key.pem');
+var certificate = fs.readFileSync('./config/ssl-cert.pem');
+var credentials = {
+	key: privateKey,
+	cert: certificate
+};
 
 var app = express();
 
@@ -38,12 +41,23 @@ if ('production' == app.get('env')) {
 }
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
-app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
+app.use(require('less-middleware')({
+	src: path.join(__dirname, 'public')
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', process.env.PORT || 8888);
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
+
+if ('development' !== app.get('env')) {
+	app.use(function(req, res, next) {
+		if (!req.secure) {
+			return res.redirect(['https://', req.get('Host'), req.url].join(''));
+		}
+		next();
+	});
+}
 
 app.use(app.router);
 var routes = require('./routing/routes').routes(app);
@@ -52,9 +66,9 @@ if ('development' === app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function() {
 	console.log('Node.js server listening on port ' + app.get('port'));
 });
-https.createServer(credentials, app).listen(443, function(){
+https.createServer(credentials, app).listen(443, function() {
 	console.log('Node.js server listening on port 443');
 });
