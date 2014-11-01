@@ -70,7 +70,7 @@ block content
 
 			.col-lg-6.col-md-6.col-sm-4
 				.form-group
-					textarea#notes.form-control(data-bind='value: notes', placeholder='Type notes here')
+					textarea#notes.form-control(data-bind='value: notes', placeholder='#{__('TypeNotesHere')}')
 
 				.form-group
 					.alert.alert-info
@@ -80,10 +80,8 @@ block content
 							span(data-bind='text: date')
 
 						div
-							span #{__('PreviousDuration')}:
-							span ~
+							span #{__('PreviousDuration')}: ~
 							span(data-bind='text: estimatedTime')
-							span &nbsp;minutes
 
 				.form-group
 					div
@@ -92,10 +90,10 @@ block content
 
 					div
 						label(for='actualTimeSec') #{__('ActualTimeSec')}: &nbsp;
-						input#curStartDate(type='number' data-bind='value: actualTimeSec')
+						input#actualTimeSec(type='number' data-bind='value: actualTimeSec')
 
 				.form-group
 					button#saveWorkout.btn.btn-lg.btn-block.btn-primary(type='button')
 						span.fa.fa-cloud-upload
 						span &nbsp;
-						span #{(__'SaveWorkout')}
+						span #{__('SaveWorkout')}
