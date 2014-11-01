@@ -56,7 +56,7 @@ block content
 										'css: { ' + 
 										'  "btn-success": isStarted(), ' +
 										'  "btn-warning": isRelaxing(), '+
-										'  "btn-default": isBlocked() || isFinished() '+
+										'  "btn-default": isBlocked() || isFinished() ' +
 										'}')
 										span(data-bind='text: actualTimeFormatted')
 										span &nbsp;
@@ -70,7 +70,7 @@ block content
 
 			.col-lg-6.col-md-6.col-sm-4
 				.form-group
-					textarea#notes.form-control(data-bind='value: notes', placeholder='#{__('TypeNotesHere')}')
+					textarea#notes.form-control(data-bind='value: notes', placeholder='#{__("TypeNotesHere")}')
 
 				.form-group
 					.alert.alert-info
