@@ -8,7 +8,9 @@
   },
   "author": "Andrei Golyakov <golyakoff@gmail.com>",
   "maintainers": "Andrei Golyakov <golyakoff@gmail.com>",
-  "licenses": ["GPLV2"],
+  "licenses": [
+    "GPLV2"
+  ],
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -16,12 +18,12 @@
   },
   "dependencies": {
     "express": "3.4.4",
-    "jade": "*",
+    "jade": "~1.7.0",
     "less-middleware": "*",
-    "moment": "*",
-    "jasmine-node": "*",
-    "aws-sdk": "1.13.0",
-    "i18n": "*",
+    "moment": "~2.8.3",
+    "jasmine-node": "~1.14.5",
+    "aws-sdk": "~1.13.0",
+    "i18n": "~0.5.0",
     "everyauth": "*",
     "node-force-domain": "*"
   }

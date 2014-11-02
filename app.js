@@ -42,9 +42,7 @@ if ('development' === app.get('env')) {
 
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
-app.use(require('less-middleware')({
-	src: path.join(__dirname, 'public')
-}));
+app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', process.env.PORT || 8888);
