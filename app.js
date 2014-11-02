@@ -6,6 +6,7 @@ var i18n = require("i18n");
 var everyauth = require('everyauth');
 var forceDomain = require('node-force-domain');
 var fs = require('fs');
+//var demoAuthMiddleware = require('lib/data/helpers/demoAuthMiddleware');
 
 i18n.configure({
 	locales: ['en', 'ru'],
@@ -16,13 +17,6 @@ i18n.configure({
 });
 
 var everyauthHelper = require('./lib/helpers/everyauthHelper');
-
-var privateKey = fs.readFileSync('./config/ssl-key.pem');
-var certificate = fs.readFileSync('./config/ssl-cert.pem');
-var credentials = {
-	key: privateKey,
-	cert: certificate
-};
 
 var app = express();
 
@@ -36,9 +30,16 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('secret'));
 app.use(express.session());
 app.use(express.compress());
+
 if ('production' == app.get('env')) {
 	app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
 }
+
+if ('development' === app.get('env')) {
+	var fakeAuth = require('./lib/helpers/fakeAuth');
+	app.use(fakeAuth.middleware);
+}
+
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
 app.use(require('less-middleware')({
@@ -50,7 +51,7 @@ app.set('port', process.env.PORT || 8888);
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
-if ('development' !== app.get('env')) {
+if ('production' === app.get('env')) {
 	app.use(function(req, res, next) {
 		if (!req.secure) {
 			return res.redirect(['https://', req.get('Host'), req.url].join(''));
@@ -67,8 +68,19 @@ if ('development' === app.get('env')) {
 }
 
 http.createServer(app).listen(app.get('port'), function() {
-	console.log('Node.js server listening on port ' + app.get('port'));
+	console.log('Node.js server listening on port ' + app.get('port') + '.');
+	console.log('Node.js works in ' + app.get('env') + ' environment.');
 });
-https.createServer(credentials, app).listen(443, function() {
-	console.log('Node.js server listening on port 443');
-});
+
+if ('production' === app.get('env')) {
+	var privateKey = fs.readFileSync('./config/ssl-key.pem');
+	var certificate = fs.readFileSync('./config/ssl-cert.pem');
+	var credentials = {
+		key: privateKey,
+		cert: certificate
+	};
+
+	https.createServer(credentials, app).listen(443, function() {
+		console.log('Node.js server listening on port 443');
+	});
+}
