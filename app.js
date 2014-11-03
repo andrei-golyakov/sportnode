@@ -6,7 +6,6 @@ var i18n = require("i18n");
 var everyauth = require('everyauth');
 var forceDomain = require('node-force-domain');
 var fs = require('fs');
-//var demoAuthMiddleware = require('lib/data/helpers/demoAuthMiddleware');
 
 i18n.configure({
 	locales: ['en', 'ru'],
