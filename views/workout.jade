@@ -3,6 +3,7 @@ extends layout
 block scripts
 	script(type='text/javascript', src='/javascripts/knockout-3.0.0.js' defer)
 	script(type='text/javascript', src='/javascripts/knockout.mapping-2.4.1.min.js', defer)
+	script(type='text/javascript', src='/javascripts/moment-with-locales.min.js', defer)
 	script(type='text/javascript', src='/javascripts/workout.js', defer)
 
 block content
@@ -21,7 +22,7 @@ block content
 						.item-header
 							h3.item-name(data-bind='text: exerciseName')
 						.item-footer.clearfix
-							.item-date.pull-left(data-bind='text: dateFromNow')
+							.item-date.pull-left(data-bind='momentjsWorkoutDateFromNow: dateFromNow, locale: "#{__(locale)}", zeroValue: \'#{__("NewExercise")}\'')
 							.item-date.pull-right
 								span ~
-								span(data-bind='text: estimatedTime')
+								span(data-bind='momentjsWiorkoutPeriod: estimatedTime, locale: "#{__(locale)}"')

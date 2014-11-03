@@ -26,6 +26,8 @@
 	"Facebook": "Facebook",
 	"Vkontakte": "VKontakte",
 
+	"NewExercise": "New exercise",
+	"WasNotExecuted": "was not executed yet.",
 	"LatestWorkouts": "Latest Workouts",
 
 	"ConfigureExercises": "Configure Exercises",
@@ -44,7 +46,7 @@
 	"PlannedNumber": "Planned",
 	"ActualNumber": "Actual",
 	"RelaxSeconds": "Relax",
-	"TypeNotesHere": "Type notes here, for example, the weight you training with.",
+	"TypeNotesHere": "Type notes here. For example, the weight you training with.",
 	"PreviousDate": "Previous execution date",
 	"PreviousDuration": "Previous duration (min)",
 	"StartedAt": "Started at",

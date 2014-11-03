@@ -1,18 +1,58 @@
-(function() {
+(function () {
 	var c = {
 		select: {
 			workoutListBlock: '#workout-list'
 		},
-		attr: {
-		},
+		attr: {},
 		url: {
 			loadWorkoutList: '/data/workouts'
 		}
 	};
 
-	function runScript(){
-		$(document).ready(function() {
-			var pageModel = new WorkoutListPageViewModel()
+	function runScript() {
+		$(document).ready(function () {
+			var pageModel = new WorkoutListPageViewModel();
+
+			ko.bindingHandlers.momentjsWorkoutDateFromNow = {
+				update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+					var value = valueAccessor();
+					var allBindings = allBindingsAccessor();
+					var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+					var locale = allBindings.locale || 'en';
+					var output = allBindings.zeroValue || '-';
+					if (valueUnwrapped !== null && valueUnwrapped !== undefined && valueUnwrapped.length > 0 && (new Date(valueUnwrapped)) > (new Date(0))) {
+						output = moment(valueUnwrapped).locale(locale).fromNow();
+					}
+
+					if ($(element).is("input") === true) {
+						$(element).val(output);
+					} else {
+						$(element).text(output);
+					}
+				}
+			};
+			ko.bindingHandlers.momentjsWiorkoutPeriod = {
+				update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+					var value = valueAccessor();
+					var allBindings = allBindingsAccessor();
+					var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+					var locale = allBindings.locale || 'en';
+					var output = '-';
+					var intValueUnwrapped = parseInt(valueUnwrapped);
+					if (!isNaN(intValueUnwrapped)) {
+						output = moment.duration(intValueUnwrapped, 'seconds').locale(locale).humanize();
+					}
+
+					if ($(element).is("input") === true) {
+						$(element).val(output);
+					} else {
+						$(element).text(output);
+					}
+				}
+			};
+
 			ko.applyBindings(pageModel);
 			pageModel.loadWorkoutList();
 		});
@@ -41,22 +81,22 @@
 	}
 
 	WorkoutListPageViewModel.prototype = {
-		loadWorkoutList: function() {
+		loadWorkoutList: function () {
 			var self = this;
 			var url = c.url.loadWorkoutList;
 			$.get(
 				url,
-				function(data) {
+				function (data) {
 					self.onLoadWorkoutList.call(self, data);
 				},
 				'json');
 		},
 
-		onLoadWorkoutList: function(data) {
+		onLoadWorkoutList: function (data) {
 			var self = this;
 			ko.mapping.fromJS(data, {}, self.workoutList);
 		}
 	};
-	
+
 	runScript();
 })();

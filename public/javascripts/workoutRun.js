@@ -43,6 +43,47 @@
 		$(document).ready(function(){
 			workoutId = $(c.select.workoutIdHolder).val();
 			model = new WorkoutRunPageViewModel()
+
+			ko.bindingHandlers.momentjsWorkoutDateCalendar = {
+				update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+					var value = valueAccessor();
+					var allBindings = allBindingsAccessor();
+					var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+					var locale = allBindings.locale || 'en';
+					var output = allBindings.zeroValue || '-';
+					if (valueUnwrapped !== null && valueUnwrapped !== undefined && valueUnwrapped.length > 0 && (new Date(valueUnwrapped)) > (new Date(0))) {
+						output = moment(valueUnwrapped).locale(locale).calendar();
+					}
+
+					if ($(element).is("input") === true) {
+						$(element).val(output);
+					} else {
+						$(element).text(output);
+					}
+				}
+			};
+			ko.bindingHandlers.momentjsWiorkoutPeriod = {
+				update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+					var value = valueAccessor();
+					var allBindings = allBindingsAccessor();
+					var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+					var locale = allBindings.locale || 'en';
+					var output = '-';
+					var intValueUnwrapped = parseInt(valueUnwrapped);
+					if (!isNaN(intValueUnwrapped)) {
+						output = moment.duration(intValueUnwrapped, 'minutes').locale(locale).humanize();
+					}
+
+					if ($(element).is("input") === true) {
+						$(element).val(output);
+					} else {
+						$(element).text(output);
+					}
+				}
+			};
+
 			ko.applyBindings(model);
 			model.loadWorkout(workoutId);
 			me.audioPlayer = document.getElementById(c.attr.audioPlayerId);

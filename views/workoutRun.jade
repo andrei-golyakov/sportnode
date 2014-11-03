@@ -3,6 +3,7 @@ extends layout
 block scripts
 	script(type='text/javascript', src='/javascripts/knockout-3.0.0.js' defer)
 	script(type='text/javascript', src='/javascripts/knockout.mapping-2.4.1.min.js', defer)
+	script(type='text/javascript', src='/javascripts/moment-with-locales.min.js', defer)
 	script(type='text/javascript', src='/javascripts/workoutRun.js', defer)
 
 block content
@@ -77,11 +78,11 @@ block content
 						div
 							span #{__('PreviousDate')}:
 							span &nbsp;
-							span(data-bind='text: date')
+							span(data-bind='momentjsWorkoutDateCalendar: date, locale: "#{__(locale)}", zeroValue: \'#{__("WasNotExecuted")}\'')
 
 						div
 							span #{__('PreviousDuration')}: ~
-							span(data-bind='text: estimatedTime')
+							span(data-bind='momentjsWiorkoutPeriod: estimatedTime, locale: "#{__(locale)}"')
 
 				.form-group
 					div
