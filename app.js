@@ -1,6 +1,5 @@
 var express = require('express');
 var http = require('http');
-//var https = require('https');
 var path = require('path');
 var i18n = require("i18n");
 var everyauth = require('everyauth');
@@ -31,7 +30,7 @@ app.use(express.session());
 app.use(express.compress());
 
 if ('production' == app.get('env')) {
-	app.use(forceDomain(JSON.parse(fs.readFileSync('./config/deploy.json'))));
+	app.use(forceDomain(JSON.parse(fs.readFileSync(path.join(__dirname, 'config/deploy.json')))));
 }
 
 if ('development' === app.get('env')) {
@@ -48,15 +47,6 @@ app.set('port', process.env.PORT || 8888);
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
-//if ('production' === app.get('env')) {
-//	app.use(function(req, res, next) {
-//		if (!req.secure) {
-//			return res.redirect(['https://', req.get('Host'), req.url].join(''));
-//		}
-//		next();
-//	});
-//}
-
 app.use(app.router);
 var routes = require('./routing/routes').routes(app);
 
@@ -68,16 +58,3 @@ http.createServer(app).listen(app.get('port'), function() {
 	console.log('Node.js server listening on port ' + app.get('port') + '.');
 	console.log('Node.js works in ' + app.get('env') + ' environment.');
 });
-
-//if ('production' === app.get('env')) {
-//	var privateKey = fs.readFileSync('./config/ssl-key.pem');
-//	var certificate = fs.readFileSync('./config/ssl-cert.pem');
-//	var credentials = {
-//		key: privateKey,
-//		cert: certificate
-//	};
-//
-//	https.createServer(credentials, app).listen(443, function() {
-//		console.log('Node.js server listening on port 443');
-//	});
-//}
