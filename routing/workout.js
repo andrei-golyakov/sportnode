@@ -47,7 +47,11 @@ exports.data = {
 		if (!ensureUserLoggedInAjax(req, res)) {
 			return;
 		}
-		workoutManager.getWorkouts(req.user.id, function(workouts){
+		workoutManager.getWorkouts(req.user.id, function(workouts, error){
+			if(error) {
+				console.log(error);
+			}
+
 			res.send(workouts);
 		});
 	},
@@ -55,12 +59,17 @@ exports.data = {
 	/*
 	 * GET latest workout.
 	 */
-	
+
 	getLatest: function(req, res) {
 		if (!ensureUserLoggedInAjax(req, res)) {
 			return;
 		}
-		workoutManager.getWorkout(req.user.id, req.params.id, function(workout) {
+
+		workoutManager.getWorkout(req.user.id, req.params.id, function(workout, error) {
+			if(error) {
+				console.log(error);
+			}
+
 			res.send(workout);
 		});
 	},
@@ -73,7 +82,10 @@ exports.data = {
 		if (!ensureUserLoggedInAjax(req, res)) {
 			return;
 		}
-		workoutManager.updateLatestWorkout(req.user.id, req.params.id, req.body, function(result) {
+		workoutManager.updateLatestWorkout(req.user.id, req.params.id, req.body, function(result, error) {
+			if(error) {
+				console.log(error);
+			}
 			res.send(result);
 		});
 	}
