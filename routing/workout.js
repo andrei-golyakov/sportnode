@@ -57,7 +57,7 @@ exports.data = {
 	},
 
 	/*
-	 * GET latest workout.
+	 * GET the latest workout.
 	 */
 
 	getLatest: function(req, res) {
@@ -75,7 +75,7 @@ exports.data = {
 	},
 
 	/*
-	 * POST latest workout.
+	 * POST the latest workout.
 	 */
 
 	updateLatest: function(req, res) {
@@ -86,6 +86,7 @@ exports.data = {
 			if(error) {
 				console.log(error);
 			}
+
 			res.send(result);
 		});
 	}
