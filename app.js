@@ -1,10 +1,20 @@
-var express = require('express');
 var http = require('http');
+var express = require('express');
+var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
 var path = require('path');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var compression = require('compression');
+var errorhandler = require('errorhandler')
 var i18n = require("i18n");
 var everyauth = require('everyauth');
 var forceDomain = require('node-force-domain');
-var fs = require('fs');
+var connectMssql = require('connect-mssql');
+var config = require('./lib/helpers/config').config;
+var everyauthHelper = require('./lib/helpers/everyauthHelper');
+var fakeauthHelper = require('./lib/helpers/fakeauthHelper');
 
 i18n.configure({
 	locales: ['en', 'ru'],
@@ -14,28 +24,31 @@ i18n.configure({
 	directory: path.join(__dirname, 'locales')
 });
 
-var everyauthHelper = require('./lib/helpers/everyauthHelper');
-
 var app = express();
 
 everyauthHelper.setup(everyauth);
 
-app.use(express.favicon())
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser('secret'));
-app.use(express.session());
-app.use(express.compress());
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser(config.secretKeys.cookie));
+var mssqlStorage = connectMssql(session);
+app.use(session({
+    store: new mssqlStorage(config.mssql),
+    secret: config.secretKeys.session,
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(compression());
 
 if ('production' == app.get('env')) {
-	app.use(forceDomain(JSON.parse(fs.readFileSync(path.join(__dirname, 'config/deploy.json')))));
+	app.use(forceDomain(config.forceDomain));
 }
 
 if ('development' === app.get('env')) {
-	var fakeAuth = require('./lib/helpers/fakeAuth');
-	app.use(fakeAuth.middleware);
+	fakeauthHelper.setup(config.fakeDevUser)
+	app.use(fakeauthHelper.middleware());
 }
 
 app.use(everyauth.middleware(app));
@@ -47,11 +60,11 @@ app.set('port', process.env.PORT || 8888);
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(app.router);
-var routes = require('./routing/routes').routes(app);
+var router = require('./routing/routes').setup();
+app.use('/', router);
 
 if ('development' === app.get('env')) {
-	app.use(express.errorHandler());
+	app.use(errorhandler());
 }
 
 http.createServer(app).listen(app.get('port'), function() {

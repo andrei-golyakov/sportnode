@@ -17,15 +17,22 @@
     "test": "jasmine-node spec"
   },
   "dependencies": {
-    "express": "3.4.4",
-    "jade": "~1.7.0",
-    "less-middleware": "*",
-    "moment": "~2.8.3",
-    "jasmine-node": "~1.14.5",
-    "aws-sdk": "~1.13.0",
-    "i18n": "~0.5.0",
+    "body-parser": "*",
+    "compression": "*",
+    "connect-mssql": "1.*",
+    "cookie-parser": "*",
+    "errorhandler": "*",
     "everyauth": "*",
+    "express": "4.*",
+    "express-session": "*",
+    "i18n": "*",
+    "jade": "1.*",
+    "jasmine-node": "^2.0.0",
+    "less-middleware": "*",
+    "moment": "2.*",
+    "morgan": "*",
+    "mssql": "1.*",
     "node-force-domain": "*",
-    "mssql": "1.3.*"
+    "serve-favicon": "*"
   }
 }
