@@ -4,7 +4,7 @@
 		$(document).ready(function() {
 			$("body")
 				.on('click', '#loginButton', onLoginButtonClick)
-				.on('click', '#logoutButton', onLogoutButtonClick)
+				.on('click', '#logoutButton', onLogoutButtonClick);
 		});
 
 		var c = {

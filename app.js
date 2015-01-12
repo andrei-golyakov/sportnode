@@ -12,6 +12,8 @@ var i18n = require('i18n');
 var everyauth = require('everyauth');
 var forceDomain = require('node-force-domain');
 var connectMssql = require('connect-mssql');
+var bundleup = require('bundle-up3');
+var assets = require('./lib/helpers/assets');
 var config = require('./lib/helpers/config').config;
 var everyauthHelper = require('./lib/helpers/everyauthHelper');
 var fakeauthHelper = require('./lib/helpers/fakeauthHelper');
@@ -54,6 +56,17 @@ if ('development' === app.get('env')) {
 app.use(everyauth.middleware(app));
 app.use(i18n.init);
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
+
+bundleup(app, assets, {
+  staticRoot: path.join(__dirname, 'public'),
+  staticUrlRoot: '/',
+  bundle: true,
+  minifyCss: false,
+  minifyJs: true,
+  asyncJs: false,
+  complete: console.log.bind(console, "Bundle-up: static files are minified/ready")
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', process.env.PORT || 8888);
