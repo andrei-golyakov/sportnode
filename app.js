@@ -7,8 +7,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var compression = require('compression');
-var errorhandler = require('errorhandler')
-var i18n = require("i18n");
+var errorhandler = require('errorhandler');
+var i18n = require('i18n');
 var everyauth = require('everyauth');
 var forceDomain = require('node-force-domain');
 var connectMssql = require('connect-mssql');
@@ -30,7 +30,7 @@ everyauthHelper.setup(everyauth);
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(config.secretKeys.cookie));
 var mssqlStorage = connectMssql(session);
@@ -47,7 +47,7 @@ if ('production' == app.get('env')) {
 }
 
 if ('development' === app.get('env')) {
-	fakeauthHelper.setup(config.fakeDevUser)
+	fakeauthHelper.setup(config.fakeDevUser);
 	app.use(fakeauthHelper.middleware());
 }
 

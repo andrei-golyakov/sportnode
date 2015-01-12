@@ -1,6 +1,6 @@
 (function() {
 
-	var me = this; 
+	var me = this;
 
 	var c = {
 		select: {
@@ -71,7 +71,7 @@
 
 					var locale = allBindings.locale || 'en';
 					var output = '-';
-					var intValueUnwrapped = parseInt(valueUnwrapped);
+					var intValueUnwrapped = parseInt(valueUnwrapped, 10);
 					if (!isNaN(intValueUnwrapped)) {
 						output = moment.duration(intValueUnwrapped, 'minutes').locale(locale).humanize();
 					}
@@ -110,22 +110,24 @@
 	}
 
 	function onSetRelaxButtonClick(event) {
-		$button = $(event.currentTarget);
-		var index = parseInt($button.attr(c.attr.setRelaxButton));
+		var $button = $(event.currentTarget);
+		var index = parseInt($button.attr(c.attr.setRelaxButton), 10);
 		startSetRelaxing(index);
 	}
 
 	function onSaveWorkoutButtonClick(event) {
 		var m = me.model.getWriteModel();
 		var url = c.url.loadWorkoutTemplate.replace('{id}', me.workoutId);
-		$.post(
-			url,
-			m,
-			function(data) {
-				window.location.href = c.url.workoutList;
-			},
-			'json'
-		);
+		$.ajax({
+	        'type': 'POST',
+	        'url': url,
+	        'contentType': 'application/json',
+	        'data': JSON.stringify(m),
+	        'dataType': 'json',
+	        'success': function(data) {
+	        	window.location.href = c.url.workoutList;
+	        }
+    	});
 	}
 
 	/*
@@ -138,7 +140,7 @@
 		}
 
 		me.model.inProgress(start);
-		
+
 		if (start) {
 			pageClosingPrevent();
 
@@ -174,17 +176,17 @@
 
 		me.setProgressInterval = setInterval(function() {
 			var time = new Date(me.model.sets()[index].actualTime());
-			
+
 			if (time <= zeroDate) {
 				// stop set timer
 				clearInterval(me.setProgressInterval);
-				
+
 				// play ding
 				me.audioPlayer.play();
 
 				// update state of current set to 'finished'
 				me.model.sets()[index].state(c.set.state.finished);
-				
+
 				if (index < me.model.sets().length - 1) {
 					// update state of the next set to 'started'
 					me.model.sets()[index + 1].state(c.set.state.started);
@@ -212,12 +214,12 @@
 	}
 
 	function onBeforeUnload() {
-		event = event || window.event
+		event = event || window.event;
 		// For IE and Firefox
 		if (event)
 			event.returnValue = me.beforeUnloadMsg;
 		// For Safari
-		return me.beforeUnloadMsg
+		return me.beforeUnloadMsg;
 	}
 
 	/*
@@ -247,7 +249,7 @@
 		self.actualTimeFormatted = ko.computed(function(){
 			return getFormattedTime(self.actualTime());
 		});
-		
+
 		// relax button enable
 		self.relaxButtonEnabled = ko.computed(function(){
 			return self.state() === c.set.state.started;
@@ -264,7 +266,7 @@
 		});
 		self.isFinished = ko.computed(function(){
 			return self.state() === c.set.state.finished;
-		});	
+		});
 	}
 
 	function WorkoutRunPageViewModel() {
@@ -296,7 +298,7 @@
 		self.setsStates = ko.observableArray([]);
 		self.curStartDate = ko.observable((new Date()).toISOString().replace(/\.\d{3}/, ''));
 
-		
+
 		self.actualTimeFormatted = ko.computed(function(){
 			return getFormattedTime(self.actualTime());
 		});
@@ -379,17 +381,16 @@
 
 			for (var i = 0; i < me.model.sets().length; i++) {
 				m.sets.push({
-					e: parseInt(me.model.sets()[i].expectedReps()),
-					a: parseInt(me.model.sets()[i].actualReps()),
+					e: parseInt(me.model.sets()[i].expectedReps(), 10),
+					a: parseInt(me.model.sets()[i].actualReps(), 10),
 					r: me.model.sets()[i].relaxTime()
 				});
-				m.reps = m.reps + parseInt(me.model.sets()[i].actualReps());
-			};
+				m.reps = m.reps + parseInt(me.model.sets()[i].actualReps(), 10);
+			}
 
 			return m;
 		}
-
 	};
-	
+
 	runScript();
 })();

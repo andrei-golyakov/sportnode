@@ -1,9 +1,6 @@
 extends layout
 
 block scripts
-	script(type='text/javascript', src='/javascripts/knockout-3.0.0.js' defer)
-	script(type='text/javascript', src='/javascripts/knockout.mapping-2.4.1.min.js', defer)
-	script(type='text/javascript', src='/javascripts/moment-with-locales.min.js', defer)
 	script(type='text/javascript', src='/javascripts/workout.js', defer)
 
 block content
@@ -13,8 +10,8 @@ block content
 			#workout-list(data-bind='foreach: workoutList').workout-list
 				.col-xs-12.col-sm-6.col-md-4.col-lg-3.workout-card(
 					data-bind=
-						'css: {' + 
-						' "good-time": "good" === dateStatus(),' + 
+						'css: {' +
+						' "good-time": "good" === dateStatus(),' +
 						' "warning-time": "warning" === dateStatus(),' +
 						' "bad-time": "bad" === dateStatus()' +
 						' }')

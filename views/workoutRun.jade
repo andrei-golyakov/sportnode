@@ -1,9 +1,6 @@
 extends layout
 
 block scripts
-	script(type='text/javascript', src='/javascripts/knockout-3.0.0.js' defer)
-	script(type='text/javascript', src='/javascripts/knockout.mapping-2.4.1.min.js', defer)
-	script(type='text/javascript', src='/javascripts/moment-with-locales.min.js', defer)
 	script(type='text/javascript', src='/javascripts/workoutRun.js', defer)
 
 block content
@@ -11,7 +8,7 @@ block content
 		audio#audioPlayer(preload='auto')
 			source(src='/audio/WindowsDing.ogg', type='audio/ogg; codecs=vorbis')
 			source(src='/audio/WindowsDing.mp3', type='audio/mpeg')
-			
+
 
 		input#workoutId(type='hidden', value='#{id}')
 		input#beforeUnloadMsg(type='hidden', value="#{__('BeforeUnloadMsg')}")
@@ -39,7 +36,7 @@ block content
 								th.buttons &nbsp;
 						tbody(data-bind='foreach: sets')
 							tr(data-bind=
-								'css: { ' + 
+								'css: { ' +
 								'  "success": isFinished(), ' +
 								'  "warning": isStarted() || isRelaxing(), ' +
 								'  "danger": isBlocked() ' +
@@ -53,8 +50,8 @@ block content
 								td
 									button.btn.btn-lg(data-bind=
 										'attr : { "data-set-relax-button": $index }, ' +
-										'enable: isStarted() || isRelaxing, ' + 
-										'css: { ' + 
+										'enable: isStarted() || isRelaxing, ' +
+										'css: { ' +
 										'  "btn-success": isStarted(), ' +
 										'  "btn-warning": isRelaxing(), '+
 										'  "btn-default": isBlocked() || isFinished() ' +
@@ -62,12 +59,12 @@ block content
 										span(data-bind='text: actualTimeFormatted')
 										span &nbsp;
 										span.fa(data-bind=
-											'css: { ' + 
+											'css: { ' +
 											'  "fa-minus-circle": isBlocked(), ' +
 											'  "fa-play": isStarted(), ' +
 											'  "fa-clock-o": isRelaxing(), ' +
 											'  "fa-check": isFinished() ' +
-											'}') 
+											'}')
 
 			.col-lg-6.col-md-6.col-sm-4
 				.form-group

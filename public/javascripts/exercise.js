@@ -56,7 +56,7 @@
 
 	function onEditExerciseClick(event) {
 		var eId = $(event.currentTarget).attr(c.attr.editExerciseId);
-		
+
 		var exercise = me.model.getExerciseById(eId);
 		if (typeof exercise !== 'undefined' && exercise !== null) {
 			me.model.exerciseDialogMode(c.dialogMode.edit);
@@ -71,7 +71,7 @@
 
 	function onSaveExerciseDialog() {
 		var eId = me.model.exerciseDialogId();
-		
+
 		var exercise = me.model.getExerciseById(eId);
 		if (typeof exercise !== 'undefined' && exercise !== null) {
 			exercise.name(me.model.exerciseDialogName());
@@ -125,12 +125,14 @@
 			console.error('Cannot get write model by ID specified.');
 			return;
 		}
-		$.post(
-			c.url.putExercise,
-			m,
-			function(data) {},
-			'json'
-		);
+		$.ajax({
+	        'type': 'POST',
+	        'url': c.url.putExercise,
+	        'contentType': 'application/json',
+	        'data': JSON.stringify(m),
+	        'dataType': 'json',
+	        'success': function(data) {}g
+    	});
 	}
 
 	/*
@@ -206,6 +208,6 @@
 			}
 		}
 	};
-	
+
 	runScript();
 })();
