@@ -29,7 +29,7 @@
 
 	function runScript(){
 		$(document).ready(function() {
-			me.model = new ExerciseListPageViewModel()
+			me.model = new ExerciseListPageViewModel();
 			ko.applyBindings(me.model);
 			me.model.loadExercises();
 
@@ -37,7 +37,7 @@
 				.on('click', c.select.editExercise, onEditExerciseClick)
 				.on('click', c.select.addExercise, onAddExerciseClick)
 				.on('hidden.bs.modal', c.select.exerciseDialog, onCloseExerciseDialog)
-				.on('click', c.select.exerciseDialogSave, onSaveExerciseDialog)
+				.on('click', c.select.exerciseDialogSave, onSaveExerciseDialog);
 		});
 	}
 
@@ -65,7 +65,7 @@
 			me.model.exerciseDialogPeriod(exercise.period());
 			$(c.select.exerciseDialog).modal('show');
 		} else {
-			console.error('Exercise not found by ID specified.')
+			console.error('Exercise not found by ID specified.');
 		}
 	}
 
@@ -131,7 +131,7 @@
 	        'contentType': 'application/json',
 	        'data': JSON.stringify(m),
 	        'dataType': 'json',
-	        'success': function(data) {}g
+	        'success': function(data) {}
     	});
 	}
 
@@ -181,7 +181,7 @@
 			self.exerciseMap = [];
 			for (var i = 0; i < len; i++) {
 				self.exerciseMap[me.model.exercises()[i].id()] = i;
-			};
+			}
 		},
 
 		getExerciseById: function(id) {
@@ -201,8 +201,8 @@
 				return {
 					id: exercise.id(),
 					name: exercise.name(),
-					period: parseInt(exercise.period())
-				}
+					period: parseInt(exercise.period(), 10)
+				};
 			} else {
 				return undefined;
 			}
